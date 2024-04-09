@@ -1,0 +1,66 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
+  border: 1px solid #3d1522;
+  padding: 20px;
+  border-radius: 10px;
+  transition: border .4s;
+}
+
+.content {
+  @include flex-column(7);
+  justify-content: center;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.actions {
+  @include flex-align-center(10);
+}
+
+.action {
+  @include flex-center;
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  transition: background-color .4s, border .4s;
+  border: 2px solid transparent;
+  background-color: $maroon;
+}
+
+.edit {
+  background-color: #71ce00;
+
+  &:hover {
+    background-color: #53a900;
+  }
+
+  &:focus {
+    border-color: #71ce00;
+    background-color: transparent;
+
+    svg path {
+      fill: $black;
+    }
+  }
+}
+
+.delete {
+  &:hover {
+    background-color: #932424;
+  }
+
+  &:focus {
+    border-color: #932424;
+    background-color: transparent;
+
+    svg path {
+      fill: #932424;
+    }
+  }
+}

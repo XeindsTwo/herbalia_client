@@ -1,0 +1,68 @@
+.list {
+  column-count: 2;
+  grid-column-gap: 32px;
+  margin-bottom: 30px;
+  @include r($lg) {
+    @include flex-column(20);
+    column-count: 1;
+    margin-bottom: 25px;
+  }
+}
+
+.item {
+  padding: 8px 0 24px;
+  @include r($lg) {
+    padding: 0;
+  }
+}
+
+.wrapper {
+  background-color: $white;
+  padding: 24px 38px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px 0 rgba(53, 64, 71, .1);
+  break-inside: avoid;
+  @include r($tablet) {
+    padding: 24px 30px;
+  }
+  @include r($sm) {
+    padding: 24px 25px;
+  }
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 22px;
+  @include r($lg) {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+  @include r($sm) {
+    font-size: 20px;
+  }
+  @include r($phone) {
+    font-size: 18px;
+  }
+}
+
+.text {
+  font-size: 16px;
+  color: $gray500;
+  line-height: 1.5;
+
+  a {
+    transition: color .3s, opacity .3s, border .3s;
+    border-bottom: 1px solid transparent;
+
+    &:hover {
+      border-bottom-color: $accent;
+      color: $accent;
+    }
+
+    &:focus {
+      opacity: .5;
+    }
+  }
+}

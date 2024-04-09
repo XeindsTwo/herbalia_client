@@ -1,0 +1,66 @@
+.header {
+  background-color: #202020;
+  color: $white;
+  padding: 30px 0;
+  margin-bottom: 60px;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 45px;
+}
+
+.link {
+  font-size: 20px;
+  position: relative;
+  outline: 2px solid transparent;
+  transition: color .4s, opacity .4s, outline-color .4s;
+
+  &.active {
+    pointer-events: none;
+    color: $accent;
+
+    &::before {
+      width: 100%;
+    }
+  }
+
+  &::before {
+    @include pseudo;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: $accent;
+    transition: width .4s, opacity .4s;
+  }
+
+  &:hover {
+    color: $accent;
+
+    &::before {
+      width: 100%;
+    }
+  }
+
+  &:active {
+    opacity: .8;
+  }
+
+  &:focus {
+    color: $white;
+    opacity: 1;
+    outline-color: $accent;
+
+    &::before {
+      opacity: 0;
+    }
+  }
+}

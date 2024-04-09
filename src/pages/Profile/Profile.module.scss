@@ -1,0 +1,33 @@
+.section {
+  margin-top: 60px;
+  padding-bottom: 25px;
+}
+
+.title {
+  margin-bottom: 50px;
+}
+
+.admin {
+  display: flex;
+  padding: 17px;
+  border-radius: 10px;
+  max-width: 365px;
+  background-color: rgba($accent, .2);
+  border: 1px solid transparent;
+  margin-bottom: 40px;
+  transition: border .4s, background-color .4s;
+
+  &:hover {
+    background-color: rgba($accent, .35);
+  }
+
+  &:focus {
+    background-color: transparent;
+    border-color: $accent;
+  }
+}
+
+.inner {
+  display: flex;
+  gap: 65px;
+}

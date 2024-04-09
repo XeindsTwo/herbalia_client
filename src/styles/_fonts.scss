@@ -1,0 +1,15 @@
+@mixin font-face($font-family, $url, $weight) {
+  @font-face {
+    font-family: "#{$font-family}";
+    src: url('../assets/fonts/#{$url}.woff2') format("woff2"),
+    url('../assets/fonts/#{$url}.woff') format("woff");
+    font-weight: #{$weight};
+    font-display: swap;
+    font-style: normal;
+  }
+}
+
+@include font-face(Didona, Didona-Regular, 400);
+@include font-face(Circe, Circe-Light, 300);
+@include font-face(Circe, Circe-Regular, 400);
+@include font-face(Circe, Circe-Bold, 700);

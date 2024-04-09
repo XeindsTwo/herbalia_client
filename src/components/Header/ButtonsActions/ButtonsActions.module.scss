@@ -1,0 +1,73 @@
+.list {
+  @include flex-align-center(8);
+  justify-content: flex-end;
+}
+
+.link {
+  width: 46px;
+  height: 46px;
+  @include flex-center;
+  position: relative;
+  transition: opacity .4s, outline .4s;
+  border-radius: 50%;
+
+  &::before {
+    @include pseudo;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: scale(0.7);
+    background-color: transparent;
+    transition: all .4s;
+    z-index: -1;
+    will-change: transform;
+  }
+
+  &:hover {
+    &::before {
+      transform: scale(1);
+      background-color: $white;
+      z-index: 1;
+    }
+
+    path {
+      stroke: $accent;
+    }
+  }
+
+  &:focus {
+    &::before {
+      transform: scale(1);
+      background-color: rgba($white, .6);
+      z-index: 1;
+    }
+  }
+
+  svg {
+    position: relative;
+    z-index: 10;
+  }
+}
+
+.counter {
+  @include flex-center;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  min-width: 16px;
+  padding: 5px 5px 1px;
+  color: $black;
+  text-align: center;
+  background: $white;
+  border-radius: 50px;
+  opacity: 0;
+  transition: opacity .4s;
+
+  &.active {
+    opacity: 1;
+  }
+}

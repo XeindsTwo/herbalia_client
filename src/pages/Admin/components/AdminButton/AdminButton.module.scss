@@ -1,0 +1,25 @@
+.btn {
+  display: inline-block;
+  font-size: 16px;
+  height: 100%;
+  padding: 19px 30px;
+  border: 1px solid #959c9b;
+  line-height: 1;
+  transition: border .4s, background-color .4s, opacity .4s, color .4s;
+  margin-bottom: 50px;
+  border-radius: 4px;
+
+  &:hover {
+    border-color: $accent;
+    color: $accent;
+  }
+
+  &--categories {
+    margin-bottom: 30px;
+
+    &:hover {
+      background-color: #3d1522;
+      border-color: transparent;
+    }
+  }
+}

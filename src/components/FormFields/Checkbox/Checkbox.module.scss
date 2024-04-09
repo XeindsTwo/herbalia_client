@@ -1,0 +1,54 @@
+.checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s;
+  gap: 7px;
+  position: relative;
+  font-size: 16px;
+  max-width: max-content;
+
+  a {
+    margin-left: -3px;
+  }
+
+  input {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .checkmark {
+    transform: translateY(-2px);
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid $maroon;
+    border-radius: 4px;
+    transition: border .3s, background-color .3s;
+
+    &::after {
+      @include pseudo;
+      @include topLeft50;
+      width: 7px;
+      height: 7px;
+      background-color: $maroon;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+  }
+
+  input:checked ~ .checkmark:after {
+    opacity: 1;
+  }
+}
+
+.bottom {
+  margin-bottom: 17px;
+}

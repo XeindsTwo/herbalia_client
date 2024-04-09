@@ -1,0 +1,40 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info {
+  @include flex-between(20);
+  align-items: center;
+}
+
+.remove {
+  @include flex-center;
+  height: 24px;
+  width: 24px;
+  outline: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: outline-color .4s;
+
+  &:hover {
+    svg path {
+      stroke: $accent;
+    }
+  }
+
+  &:focus {
+    outline-color: $accent;
+    svg path {
+      stroke: $black400;
+    }
+  }
+}
+
+.preview {
+  border-radius: 8px;
+  @include objectCoverBg;
+  object-position: top;
+  width: 100%;
+}

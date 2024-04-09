@@ -1,0 +1,11 @@
+.admin {
+  &__title {
+    font-size: 38px;
+    margin-bottom: 20px;
+    font-weight: 500;
+
+    &--bottom {
+      margin-bottom: 30px;
+    }
+  }
+}

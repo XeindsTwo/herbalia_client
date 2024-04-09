@@ -1,0 +1,157 @@
+.header {
+  padding: 24px 0 42px;
+  position: relative;
+  font-size: 16px;
+  background-color: $pink100;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+}
+
+.city {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  align-items: flex-start;
+  line-height: 1;
+
+  &_title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &_name {
+    font-size: 18px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  line-height: 1;
+
+  &_title {
+    font-size: 12px;
+  }
+
+  &_phone,
+  &_link {
+    align-self: flex-start;
+    transition: color .4s, outline-color .4s;
+    border-radius: 4px;
+    outline: 2px solid transparent;
+
+    &:focus {
+      outline-color: $accent;
+    }
+  }
+
+  &_phone {
+    color: $maroon;
+    font-size: 18px;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+
+  &_link {
+    &:hover {
+      color: #c06c84;
+    }
+  }
+}
+
+.feedback {
+  @include flex-column(11);
+
+  &_link {
+    position: relative;
+    line-height: 1;
+    transition: opacity .4s, outline-color .4s;
+    border-radius: 4px;
+    align-self: flex-start;
+    outline: 2px solid transparent;
+
+    &:hover {
+      &::before {
+        width: 100%;
+      }
+    }
+
+    &:focus {
+      outline-color: $accent;
+    }
+
+    &::before {
+      @include pseudo;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      transition: width .4s;
+      background-color: $maroon;
+    }
+  }
+}
+
+.actions {
+  @include flex-column(45);
+
+  &_top {
+    @include flex-between-center-gap(55);
+  }
+}
+
+.auth {
+  transition: color .4s, outline .4s;
+  font-size: 14px;
+  border-radius: 4px;
+
+  &:hover {
+    color: $accent;
+  }
+
+  &:focus {
+    outline: 1px solid;
+  }
+}
+
+.btn {
+  @include flex-align-center(10);
+  position: relative;
+  transition: color .4s, outline .4s, border .4s;
+  border-bottom: 1px solid transparent;
+  font-size: 14px;
+
+  &:hover {
+    color: $accent;
+  }
+
+  &:focus {
+    border-bottom-color: $accent;
+  }
+
+  &::after {
+    content: "";
+    @include bg;
+    display: inline-flex;
+    width: 10px;
+    height: 6px;
+    right: 0;
+    background-image: url("/src/assets/images/icons/arrow.svg");
+    transition: transform .4s;
+  }
+
+  &.active {
+    &::after {
+      transform: rotate(180deg);
+    }
+  }
+}

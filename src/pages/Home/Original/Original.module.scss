@@ -1,0 +1,54 @@
+.original {
+  background-color: $pink100;
+  color: $maroon;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  padding: 140px 0;
+  @include r($tablet) {
+    padding: 50px 0 150px;
+  }
+}
+
+.title {
+  max-width: 655px;
+  margin: 0 auto 20px;
+}
+
+.text {
+  font-size: 20px;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.img {
+  @include objectCoverBg;
+  object-fit: contain;
+  position: absolute;
+
+  &One {
+    top: 60%;
+    left: 0;
+    transform: translateY(-50%);
+    @include r($tablet) {
+      display: none;
+    }
+  }
+
+  &Two {
+    top: 45%;
+    right: 0;
+    bottom: auto;
+    width: 466px;
+    max-width: 9999px;
+    transform: translate(10%, -50%);
+    @include r($tablet) {
+      right: 40%;
+      bottom: 0;
+      width: 100%;
+      max-width: 400px;
+      transform: translate(50%, 60%);
+    }
+  }
+}

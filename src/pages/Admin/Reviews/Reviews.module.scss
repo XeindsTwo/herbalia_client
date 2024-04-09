@@ -1,0 +1,52 @@
+html {
+  overflow: visible !important;
+}
+
+.section {
+  position: relative;
+}
+
+.list {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 25px;
+}
+
+.btn {
+  display: block;
+  margin-left: auto;
+  position: sticky;
+  bottom: 20px;
+  background-color: $maroon;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  color: $white;
+  opacity: 0;
+  visibility: hidden;
+  line-height: 1;
+  font-size: 16px;
+  padding: 14px 30px;
+  transition: all .4s;
+  pointer-events: none;
+  user-select: none;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    user-select: auto;
+  }
+
+  &:hover {
+    background-color: rgba($maroon50, .8);
+    backdrop-filter: blur(3px);
+    color: $white;
+  }
+
+  &:focus {
+    background-color: $accent;
+    color: $white;
+    border-color: transparent;
+  }
+}

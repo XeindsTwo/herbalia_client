@@ -1,0 +1,34 @@
+.logout {
+  color: $red500;
+  transition: color .3s, opacity .3s;
+  line-height: 1;
+  padding-bottom: 4px;
+  display: block;
+  max-width: max-content;
+  position: relative;
+
+  &::before {
+    @include pseudo;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 0;
+    background-color: $red500;
+    transition: width .4s;
+  }
+
+  &:hover {
+    &::before {
+      width: 100%;
+    }
+  }
+
+  &:focus {
+    color: $maroon50;
+
+    &::before {
+      background-color: $maroon50;
+      width: 100%;
+    }
+  }
+}

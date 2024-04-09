@@ -1,0 +1,34 @@
+.warning {
+  background-color: #356064;
+  color: $white;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  max-width: 600px;
+  margin-bottom: 30px;
+  line-height: 1.3;
+
+  &.long {
+    max-width: 800px;
+  }
+
+  &.green {
+    background-color: #0a5745;
+    max-width: 450px;
+  }
+}
+
+.icon {
+  align-self: flex-start;
+  padding: 10px;
+  background-color: #548b93;
+  border-radius: 8px;
+  max-width: 46px;
+  width: 100%;
+
+  img {
+    @include objectCoverBg;
+    object-fit: contain;
+  }
+}

@@ -1,0 +1,105 @@
+.info {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 70px;
+  @include r($desktop) {
+    gap: 45px;
+  }
+  @media (max-width: 930px) {
+    flex-direction: column;
+    text-align: center;
+    max-width: 500px;
+    gap: 30px;
+    margin: 0 auto 50px;
+  }
+  @include r($sm) {
+    margin-bottom: 40px;
+  }
+  @media (max-width: 500px) {
+    text-align: left;
+  }
+}
+
+.img {
+  @include objectCoverBg;
+  @include r($desktop) {
+    width: 450px;
+    height: auto;
+  }
+  @media (max-width: 1100px) {
+    width: 420px;
+  }
+  @media (max-width: 930px) {
+    width: 360px;
+  }
+  @media (max-width: 700px) {
+    display: none;
+  }
+}
+
+.title {
+  line-height: 1.1;
+}
+
+.description {
+  color: $gray500;
+  @include flex-column(15);
+  @media (max-width: 1100px) {
+    font-size: 16px;
+    gap: 10px;
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 40px;
+  counter-reset: step-counter;
+  max-width: 1060px;
+  margin: 0 auto;
+  @include r($desktop) {
+    grid-gap: 30px;
+  }
+  @media (max-width: 860px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 500px) {
+    display: flex;
+    overflow-x: scroll;
+    padding-bottom: 15px;
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+    &::-webkit-scrollbar-thumb,
+    ::selection {
+      background-color: $pink300;
+    }
+  }
+}
+
+.item {
+  position: relative;
+  color: $black400;
+  font-size: 16px;
+  text-align: center;
+  counter-increment: step-counter;
+  @media(max-width: 500px) {
+    min-width: 250px;
+    text-align: left;
+  }
+
+  &::before {
+    font-family: $didona;
+    line-height: 1;
+    display: block;
+    content: counter(step-counter);
+    font-size: 36px;
+    margin-bottom: 8px;
+    color: $pink300;
+    text-align: center;
+    @media (max-width: 500px) {
+      display: flex;
+    }
+  }
+}

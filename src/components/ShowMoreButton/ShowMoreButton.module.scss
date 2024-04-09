@@ -1,0 +1,49 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 30px;
+  padding: 7px 14px;
+  color: $black400;
+  background: $white;
+  box-shadow: 0 6px 20px 0 rgba(53, 64, 71, .1);
+  transition: color .3s, box-shadow .3s;
+
+  &:hover {
+    color: $maroon50;
+    box-shadow: 0 10px 20px 0 rgba(53, 64, 71, .2);
+
+    .circle {
+      background-color: $pink600;
+    }
+  }
+
+  &:focus {
+    color: $accent;
+
+    .circle {
+      background-color: $pink900;
+
+      svg path {
+        stroke: $black;
+      }
+    }
+  }
+
+  &:active {
+    color: $maroon50;
+    box-shadow: 0 2px 8px 0 rgba(53, 64, 71, .15);
+  }
+}
+
+.circle {
+  @include flex-center;
+  width: 26px;
+  height: 26px;
+  margin-right: -5px;
+  margin-left: 9px;
+  background-color: $pink100;
+  border-radius: 50%;
+  transition: .3s;
+}

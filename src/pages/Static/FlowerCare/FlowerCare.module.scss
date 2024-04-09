@@ -1,0 +1,54 @@
+.care {
+  margin-bottom: 140px;
+}
+
+.subtext {
+  color: $gray700;
+  font-size: 20px;
+  margin: 17px 0 48px;
+}
+
+.important {
+  margin: 120px auto 0;
+  text-align: center;
+
+  &_title {
+    margin-bottom: 48px;
+    font-size: 40px;
+    font-weight: 500;
+  }
+}
+
+.conditions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+
+  &_item {
+    @include flex-center;
+    background-color: $pink1300;
+    color: $white;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 40px 32px;
+    flex-direction: column;
+    border-radius: 8px;
+
+    &_fruits {
+      background-color: $pink600;
+      color: $maroon50;
+    }
+
+    &_harm {
+      background-color: $slateblue;
+    }
+
+    img {
+      margin-bottom: 18px;
+    }
+
+    p {
+      flex-grow: 1;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.decor {
+  position: relative;
+  max-width: max-content;
+  margin: 0 auto 40px;
+
+  &.left {
+    margin: 0 0 30px;
+  }
+}
+
+.number {
+  font-size: 44px;
+  position: absolute;
+  line-height: 1;
+  font-weight: 700;
+  color: $pink1300;
+  left: 50%;
+  transform: translateX(-50%) translateY(2px);
+}

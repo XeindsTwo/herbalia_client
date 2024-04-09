@@ -1,0 +1,49 @@
+.list {
+  @include flex-column(30);
+}
+
+.item {
+  padding: 40px;
+  border-radius: 10px;
+  background-color: $white;
+  box-shadow: -1px 0 20px 0 rgba(53, 64, 71, .04)
+}
+
+.date {
+  display: block;
+  line-height: 1;
+  color: $maroon50;
+  font-weight: 700;
+  margin: 10px 0 20px;
+}
+
+.rate {
+  font-size: 16px;
+  display: block;
+}
+
+.name {
+  font-size: 22px;
+  display: block;
+  color: $accent;
+  margin-bottom: 10px;
+}
+
+.delete {
+  color: $red500;
+  display: block;
+  font-size: 16px;
+  max-width: max-content;
+  margin-bottom: 20px;
+  transition: color .4s, border .4s;
+  border-bottom: 1px solid transparent;
+
+  &:hover {
+    color: $maroon50;
+  }
+
+  &:focus {
+    color: $maroon50;
+    border-bottom-color: $maroon50;
+  }
+}

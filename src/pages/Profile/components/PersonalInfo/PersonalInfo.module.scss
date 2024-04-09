@@ -1,0 +1,42 @@
+.list {
+  @include flex-column(32);
+  max-width: 400px;
+  width: 100%;
+}
+
+.item {
+  @include flex-column(10);
+  padding-bottom: 5px;
+  border-bottom: 1px solid $maroon50;
+}
+
+.field {
+  @include flex-between(25);
+}
+
+.label {
+  font-size: 16px;
+}
+
+.input {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.edit {
+  font-style: italic;
+  transition: color .4s;
+  outline: 1px solid transparent;
+  border-radius: 4px;
+  color: $gray500;
+
+  &:hover {
+    color: $maroon50;
+  }
+
+  &:focus {
+    color: $accent;
+  }
+}

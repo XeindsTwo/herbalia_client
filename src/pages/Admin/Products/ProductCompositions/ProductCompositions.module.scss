@@ -1,0 +1,32 @@
+.plus {
+  @include flex-center;
+  padding: 16px 20px;
+  line-height: 1;
+  border-radius: 7px;
+  background-color: #0a5745;
+  border: 1px solid transparent;
+  color: $white;
+  transition: background-color .4s, color .4s, opacity .4s, border .4s;
+  margin-bottom: 25px;
+
+  &:hover {
+    background-color: #0e8062;
+  }
+
+  &:active {
+    background-color: #004231;
+  }
+
+  &:disabled {
+    opacity: .6;
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+.list {
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 35px 55px;
+}

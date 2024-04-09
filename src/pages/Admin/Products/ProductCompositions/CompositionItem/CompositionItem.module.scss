@@ -1,0 +1,53 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.top {
+  padding-top: 23.5px;
+}
+
+.content {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.column {
+  @include flex-column(0);
+  width: 100%;
+
+  .input {
+    padding: 15px 15px;
+    line-height: 1;
+  }
+}
+
+.quantity {
+  width: 25%;
+
+  &.input {
+    @include flex-center;
+    text-align: center;
+    padding: 15px 7px;
+  }
+}
+
+.delete {
+  color: $accent;
+  font-size: 14px;
+  margin-bottom: 4px;
+  outline: 1px solid transparent;
+  border-radius: 4px;
+  transition: color .4s, outline-color .4s;
+
+  &:hover {
+    color: $maroon;
+  }
+
+  &:focus {
+    outline-color: $accent;
+  }
+}

@@ -1,0 +1,54 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: normal;
+  font-size: 14px;
+  margin-bottom: 48px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:not(:last-child) {
+    &::after {
+      @include pseudo;
+      position: static;
+      width: 8px;
+      height: 1px;
+      margin-right: 8px;
+      margin-left: 8px;
+      background: $accent;
+      right: 0;
+    }
+  }
+}
+
+.link {
+  line-height: 1.2;
+  font-weight: 500;
+  display: block;
+
+  &_nav {
+    position: relative;
+    padding-bottom: 1px;
+    border-bottom: 1px solid transparent;
+    transition: color .3s, border .3s;
+
+    &:hover {
+      color: $black250;
+      border-bottom-color: $black250;
+    }
+
+    &:focus {
+      color: $accent;
+      border-bottom-color: $accent;
+    }
+  }
+
+  &.active {
+    opacity: .75;
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,43 @@
+.tab {
+  margin-top: 40px;
+
+  img {
+    @include objectCoverBg;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 12px;
+  }
+}
+
+.name {
+  display: block;
+  margin-bottom: 40px;
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.item {
+  font-size: 16px;
+  color: $gray500;
+  max-width: 240px;
+}
+
+.transfer {
+  margin-top: 48px;
+  @include flex-column(10);
+
+  li {
+    display: flex;
+
+    &::before {
+      display: flex;
+    }
+  }
+}

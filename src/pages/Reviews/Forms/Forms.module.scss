@@ -1,0 +1,69 @@
+.title {
+  margin-bottom: 48px;
+}
+
+.form {
+  @include flex-column(36);
+  max-width: 600px;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.accept {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.submit {
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 500;
+  max-width: max-content;
+  background-color: $maroon50;
+  color: $white;
+  padding: 12px 40px;
+  border-radius: 100px;
+  transition: color .4s, background-color .4s, border .4s;
+
+  &:hover {
+    background-color: $maroon100;
+  }
+
+  &:focus {
+    background-color: $accent;
+    color: $white;
+  }
+
+  &:active {
+    background-color: $maroon;
+  }
+
+  &:disabled {
+    color: $gray700;
+    background: $white200;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+.link {
+  max-width: 50%;
+  font-size: 12px;
+  line-height: 1.1;
+  font-weight: 500;
+  color: $gray900;
+
+  a {
+    color: $blue300;
+    transition: color .4s;
+
+    &:hover {
+      color: $maroon;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.upload {
+  @include flex-align-center(10);
+  max-width: max-content;
+  line-height: 1;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 15px 20px;
+  border-radius: 6px;
+  border: 1px solid $black300;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: border .4s, background-color .4s, color .4s;
+
+  &:hover {
+    background-color: rgba($maroon, .1);
+    border-color: transparent;
+  }
+}
+
+.items {
+  display: grid;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+}

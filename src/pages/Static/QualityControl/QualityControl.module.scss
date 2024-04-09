@@ -1,0 +1,22 @@
+.title {
+  margin-bottom: 48px;
+}
+
+.img {
+  @include objectCoverBg;
+  margin-bottom: 50px;
+}
+
+.content {
+  @include flex-column(26);
+  max-width: 800px;
+  line-height: 1.5;
+}
+
+ol {
+  li {
+    &::before {
+      display: inline-table;
+    }
+  }
+}

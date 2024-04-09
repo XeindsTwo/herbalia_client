@@ -1,0 +1,73 @@
+.item {
+  padding: 25px;
+  border-radius: 7px;
+  border: 1px solid $gray900;
+}
+
+.control {
+  @include flex-align-center(10);
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.btn {
+  padding: 14px 40px;
+  line-height: 1;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: color .4s, background-color .4s, border .4s;
+  border: 1px solid transparent;
+  background-color: $maroon;
+  color: $white;
+
+  &:hover {
+    background-color: #f94747;
+    border-color: #f94747;
+  }
+
+  &:focus {
+    background-color: transparent;
+    border-color: #f94747;
+    color: $black;
+  }
+}
+
+.date {
+  display: block;
+  line-height: 1;
+  color: $maroon50;
+  font-weight: 700;
+}
+
+.name, .email {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.email {
+  display: flex;
+  max-width: max-content;
+  color: $blue300;
+  border-radius: 4px;
+  outline: 1px solid transparent;
+  transition: outline-color .4s;
+  padding: 2px;
+
+  &:focus {
+    outline-color: $blue300;
+  }
+}
+
+.comment {
+  font: inherit;
+  display: flex;
+  margin: 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}

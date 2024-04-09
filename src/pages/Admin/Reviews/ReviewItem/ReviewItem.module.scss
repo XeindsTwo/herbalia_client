@@ -1,0 +1,97 @@
+.item {
+  padding: 33px;
+  border-radius: 10px;
+  background-color: $white;
+  box-shadow: 0 6px 20px 0 rgba(53, 64, 71, .07)
+}
+
+.control {
+  @include flex-align-center(10);
+  margin-bottom: 30px;
+}
+
+.btn {
+  padding: 13px 30px;
+  line-height: 1;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: color .4s, background-color .4s, border .4s;
+
+  &.approve {
+    border-color: #0e8062;
+    background-color: #0e8062;
+    color: $white;
+
+    &:hover {
+      background-color: transparent;
+      color: $black;
+    }
+
+    &:focus {
+      background-color: rgba(#0d6851, .1);
+      color: $black;
+    }
+  }
+
+  &.delete {
+    border-color: #570a0a;
+    background-color: #570a0a;
+    color: $white;
+
+    &:hover {
+      background-color: transparent;
+      color: $black;
+    }
+
+    &:focus {
+      background-color: rgba(#570a0a, .1);
+      color: $black;
+    }
+  }
+}
+
+.head {
+  @include flex-between-center-gap(30);
+  margin-bottom: 25px;
+}
+
+.date {
+  display: block;
+  line-height: 1;
+  color: $maroon50;
+  font-weight: 700;
+}
+
+.rate {
+  font-size: 16px;
+  display: block;
+}
+
+.name, .email {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-size: 22px;
+  color: $accent;
+}
+
+.email {
+  @include flex-align-center(4);
+  line-height: 1;
+
+  a {
+    display: flex;
+    color: $blue300;
+    border-radius: 4px;
+    outline: 1px solid transparent;
+    transition: outline-color .4s;
+    padding: 2px;
+
+    &:focus {
+      outline-color: $blue300;
+    }
+  }
+}

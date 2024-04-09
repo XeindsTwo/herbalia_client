@@ -1,0 +1,34 @@
+.swiper {
+  cursor: grab;
+  width: 80%;
+  margin: 0 auto 48px;
+  @include r($desktop) {
+    width: 85%;
+  }
+  @media (max-width: 1100px) {
+    margin-bottom: 35px;
+  }
+  @include r($sm) {
+    width: 100%;
+  }
+}
+
+.text {
+  @include line-clamp(6);
+  font-size: 20px;
+  font-style: italic;
+  color: $gray500;
+  margin-bottom: 24px;
+  @include r($desktop) {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+}
+
+.name {
+  font-size: 16px;
+  @media (max-width: 1100px) {
+    display: block;
+    text-align: left;
+  }
+}

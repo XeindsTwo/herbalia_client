@@ -1,0 +1,30 @@
+.item {
+  padding: 40px;
+  border-radius: 10px;
+  background-color: $white;
+  box-shadow: 0 6px 20px 0 rgba(53, 64, 71, .1)
+}
+
+.head {
+  @include flex-between-center-gap(30);
+  margin-bottom: 25px;
+}
+
+.date {
+  display: block;
+  line-height: 1;
+  color: $maroon50;
+  font-weight: 700;
+}
+
+.rate {
+  font-size: 16px;
+  display: block;
+}
+
+.name {
+  font-size: 22px;
+  display: block;
+  color: $accent;
+  margin-bottom: 10px;
+}

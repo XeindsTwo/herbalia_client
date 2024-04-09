@@ -1,0 +1,127 @@
+.contacts {
+  background-color: $pink100;
+  padding: 80px 56px;
+}
+
+.inner {
+  max-width: 825px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.content {
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+.social {
+  max-width: 285px;
+  width: 100%;
+
+  &_text {
+    font-weight: 700;
+    margin-bottom: 36px;
+  }
+}
+
+.btn {
+  background-color: $pink600;
+  width: 100%;
+  display: flex;
+  line-height: 1;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 50px;
+  padding: 14px;
+  justify-content: center;
+  outline: 1px solid transparent;
+  transition: background-color .4s, opacity .4s, outline-color .4s, color .4s;
+
+  &:hover {
+    background-color: $pink300;
+  }
+
+  &:focus, &:active {
+    background-color: $maroon50;
+    color: $white;
+  }
+}
+
+.list {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.item_link {
+  @include flex-center;
+  width: 45px;
+  height: 45px;
+  background: $pink600;
+  border-radius: 50%;
+  transition: background-color .4s ease-out, opacity .4s;
+
+  &:hover {
+    background-color: $maroon;
+  }
+
+  &:focus {
+    background-color: $accent;
+  }
+}
+
+.info {
+  max-width: 325px;
+  width: 100%;
+
+  &_link {
+    line-height: 1;
+    font-weight: 700;
+    position: relative;
+    align-self: flex-start;
+    color: $maroon;
+    padding-bottom: 3px;
+    transition: opacity .3s;
+
+    &:hover {
+      &::before {
+        width: 100%;
+      }
+    }
+
+    &:focus {
+      opacity: .3;
+    }
+
+    &::before {
+      @include pseudo;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width .4s ease-out;
+    }
+  }
+}
+
+.text {
+  margin: 24px 0 16px;
+  font-size: 16px;
+}
+
+.phone {
+  @include flex-column(5);
+
+  span {
+    display: block;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+}
