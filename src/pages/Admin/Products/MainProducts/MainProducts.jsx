@@ -85,7 +85,7 @@ export const MainProducts = () => {
                             </button>
                           </div>
                           {product.images.length > 0 && (
-                            <img src={product.images[0].url} alt={product.name}/>
+                            <img className={styles.img} src={product.images[0].url} alt={product.name} height={350}/>
                           )}
                         </div>
                         <p className={styles.price}>

@@ -9,6 +9,11 @@
   margin-bottom: 15px;
 }
 
+.img {
+  @include objectCoverBg;
+  border-radius: 7px;
+}
+
 .actions {
   position: absolute;
   top: 15px;
@@ -28,15 +33,15 @@
   position: relative;
   transition: background-color .4s, opacity .4s;
 
-  &:active {
-    opacity: .5;
-  }
-
   &_view {
     background-color: #152f3d;
 
     &:hover {
       background-color: #204a62;
+    }
+
+    &:focus {
+      background-color: rgba(#152f3d, .75);
     }
   }
 
@@ -45,6 +50,10 @@
 
     &:hover {
       background-color: #642238;
+    }
+
+    &:focus {
+      background-color: rgba(#642238, .75);
     }
   }
 }

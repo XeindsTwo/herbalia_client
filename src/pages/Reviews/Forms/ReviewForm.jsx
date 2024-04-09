@@ -90,7 +90,10 @@ export const ReviewForm = () => {
     <Layout>
       <section className={'indent indent--breadcrumbs indent--footer'}>
         <div className="container">
-          <Breadcrumbs current={'Отзывы'} additional={[{label: 'Написать отзыв', to: '/reviews/'}]}/>
+          <Breadcrumbs
+            current={'Написать отзыв'}
+            additional={[{label: 'Отзывы', to: '/reviews/'}]}
+          />
           <h1 className={`${styles.title} title`}>Написать отзыв</h1>
           <form className={styles.form} onSubmit={handleSubmit} method="POST">
             <div className={styles.items}>
