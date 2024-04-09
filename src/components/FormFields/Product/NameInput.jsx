@@ -8,6 +8,7 @@ export const NameInput = ({value, onChange, onBlur, error}) => {
         type="text"
         id="name"
         name="name"
+        maxLength={240}
         value={value}
         onChange={onChange}
         onBlur={onBlur}

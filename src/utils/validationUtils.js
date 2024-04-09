@@ -91,3 +91,22 @@ export const validateCategorySubtitle = (subtitle) => {
   }
   return '';
 };
+
+export const validateProductName = (name) => {
+  if (!name.trim()) {
+    return 'Название не должно быть пустым';
+  }
+  return '';
+};
+
+export const validateProductPrice = (price) => {
+  const numericPrice = parseFloat(price);
+  if (isNaN(numericPrice)) {
+    return 'Цена не может быть пустой';
+  } else if (numericPrice < 1200) {
+    return 'Минимальная цена - 1200 ₽';
+  } else if (numericPrice > 1000000) {
+    return 'Максимальная цена - 1 000 000 ₽';
+  }
+  return '';
+};

@@ -1,0 +1,65 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 50px 30px;
+}
+
+.head {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.actions {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.action {
+  @include flex-center;
+  width: 50px;
+  height: 50px;
+  background-color: $white;
+  border-radius: 7px;
+  position: relative;
+  transition: background-color .4s, opacity .4s;
+
+  &:active {
+    opacity: .5;
+  }
+
+  &_view {
+    background-color: #152f3d;
+
+    &:hover {
+      background-color: #204a62;
+    }
+  }
+
+  &_delete {
+    background-color: $maroon;
+
+    &:hover {
+      background-color: #642238;
+    }
+  }
+}
+
+.price {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.article {
+  font-size: 14px;
+  margin-bottom: 20px;
+}

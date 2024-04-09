@@ -3,7 +3,7 @@ import logo from '../../../../assets/images/icons/logo-white.svg'
 import {Link, NavLink} from "react-router-dom";
 
 const links = [
-  {to: "/admin/products", text: "Управление товарами"},
+  {to: "/admin/products/main", text: "Управление товарами"},
   {to: "/admin/categories", text: "Управление категориями"},
   {to: "/admin/reviews/unapproved", text: "Управление отзывами"},
   {to: "/admin/improvements", text: "Улучшения проекта"}

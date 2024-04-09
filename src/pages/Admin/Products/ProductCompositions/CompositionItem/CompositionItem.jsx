@@ -15,6 +15,7 @@ export const CompositionItem = ({name, quantity, onChange, onDelete, isFirstItem
             type="text"
             id={`elementName_${id}`}
             placeholder="Элемент состава"
+            maxLength={240}
             value={name}
             onChange={(e) => onChange(id, 'name', e.target.value)}
           />
@@ -26,7 +27,7 @@ export const CompositionItem = ({name, quantity, onChange, onDelete, isFirstItem
             type="number"
             id={`elementQuantity_${id}`}
             value={quantity}
-            placeholder="Кол-во"
+            placeholder=""
             onChange={(e) => onChange(id, 'quantity', e.target.value)}
           />
         </div>

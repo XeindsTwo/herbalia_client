@@ -12,8 +12,12 @@
   transition: border .4s, background-color .4s, color .4s;
 
   &:hover {
-    background-color: rgba($maroon, .1);
-    border-color: transparent;
+    background-color: $black300;
+    color: $white;
+
+    svg path {
+      stroke: $white;
+    }
   }
 }
 

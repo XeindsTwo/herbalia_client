@@ -6,6 +6,8 @@ import {PriceInput} from '../../../../components/FormFields/Product/PriceInput.j
 import {ImageUploader} from '../ImageUploader/ImageUploader.jsx';
 import {ProductCompositions} from '../ProductCompositions/ProductCompositions.jsx';
 import axios from 'axios';
+import {toast} from "react-toastify";
+import {validateProductName, validateProductPrice} from "../../../../utils/validationUtils.js";
 
 export const CreateProduct = () => {
   const [categories, setCategories] = useState([]);
@@ -16,6 +18,8 @@ export const CreateProduct = () => {
     photos: [],
     composition: []
   });
+  const [nameError, setNameError] = useState('');
+  const [priceError, setPriceError] = useState('');
 
   useEffect(() => {
     async function fetchCategories() {
@@ -37,6 +41,40 @@ export const CreateProduct = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const nameValidationResult = validateProductName(formData.name);
+    const priceValidationResult = validateProductPrice(formData.price);
+
+    if (nameValidationResult) {
+      setNameError(nameValidationResult);
+      return;
+    }
+
+    if (priceValidationResult) {
+      setPriceError(priceValidationResult);
+      return;
+    }
+
+    if (!formData.category_id) {
+      toast.error('Пожалуйста, выберите категорию товара');
+      return;
+    }
+
+    if (formData.photos.length === 0) {
+      toast.error('Пожалуйста, загрузите хотя бы одно изображение товара');
+      return;
+    }
+
+    if (
+      formData.composition.length === 0 ||
+      formData.composition.every(
+        (item) => !item.name || !item.quantity
+      )
+    ) {
+      toast.error('Пожалуйста, заполните хотя бы один элемент состава товара');
+      return;
+    }
+
     try {
       const token = localStorage.getItem('token');
       const formDataToSend = new FormData();
@@ -47,6 +85,10 @@ export const CreateProduct = () => {
       formData.photos.forEach((photo, index) => {
         formDataToSend.append(`photos[${index}]`, photo);
       });
+      formData.composition.forEach((item, index) => {
+        formDataToSend.append(`composition[${index}][name]`, item.name);
+        formDataToSend.append(`composition[${index}][quantity]`, item.quantity);
+      });
 
       const response = await axios.post('/admin/products/create', formDataToSend, {
         headers: {
@@ -54,9 +96,12 @@ export const CreateProduct = () => {
           'Content-Type': 'multipart/form-data',
         }
       });
+
+      toast.success('Товар успешно создан');
       console.log(response.data);
     } catch (error) {
       console.error('Ошибка при создании товара:', error);
+      toast.error('Произошла ошибка при создании товара. Пожалуйста, попробуйте еще раз');
     }
   };
 
@@ -66,6 +111,16 @@ export const CreateProduct = () => {
       ...formData,
       [name]: value
     });
+  };
+
+  const handleNameBlur = () => {
+    const error = validateProductName(formData.name);
+    setNameError(error);
+  };
+
+  const handlePriceBlur = () => {
+    const error = validateProductPrice(formData.price);
+    setPriceError(error);
   };
 
   return (
@@ -82,6 +137,8 @@ export const CreateProduct = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
+                      onBlur={handleNameBlur}
+                      error={nameError}
                     />
                   </li>
                   <li>
@@ -89,6 +146,8 @@ export const CreateProduct = () => {
                       name="price"
                       value={formData.price}
                       onChange={handleInputChange}
+                      onBlur={handlePriceBlur}
+                      error={priceError}
                     />
                   </li>
                   <li>
@@ -97,7 +156,7 @@ export const CreateProduct = () => {
                     </label>
                     <select
                       id="category"
-                      className="select"
+                      className="input"
                       name="category_id"
                       value={formData.category_id}
                       onChange={handleInputChange}

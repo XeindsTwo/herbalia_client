@@ -34,8 +34,9 @@ import {UnapprovedReviews} from "./pages/Admin/Reviews/UnapprovedReviews.jsx";
 import {ApprovedReviews} from "./pages/Admin/Reviews/ApprovedReviews.jsx";
 import {ApprovedReviewsHomepage} from "./pages/Admin/Reviews/ApprovedReviewsHomepage.jsx";
 import {Improvements} from "./pages/Admin/Improvements/Improvements.jsx";
-import {MainProducts} from "./pages/Admin/Products/MainProducts.jsx";
+import {MainProducts} from "./pages/Admin/Products/MainProducts/MainProducts.jsx";
 import {CreateProduct} from "./pages/Admin/Products/CreateProduct/CreateProduct.jsx";
+import {ProductDetails} from "./pages/ProductDetails/ProductDetails.jsx";
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 axios.defaults.withCredentials = true;
@@ -74,6 +75,9 @@ const App = () => {
             <Route path="/privacy" element={<Privacy/>}/>
             <Route path="/quality-control" element={<QualityControl/>}/>
 
+            {/*Детальная страница товара*/}
+            <Route path="/catalog/:id" element={<ProductDetails/>}/>
+
             {/* Работа с отзывами */}
             <Route path="/reviews" element={<ReviewsPage/>}/>
             <Route path="/reviews/reviews-form" element={<PrivateRoute><ReviewForm/></PrivateRoute>}/>
@@ -89,7 +93,7 @@ const App = () => {
             {/* Админ панель */}
             <Route path="/admin/*" element={<AdminWrapper/>}>
               <Route path="products/*">
-                <Route index element={<MainProducts/>}/>
+                <Route path="main" element={<MainProducts/>}/>
                 <Route path="create" element={<CreateProduct/>}/>
                 <Route path="*" element={<Error404/>}/>
               </Route>

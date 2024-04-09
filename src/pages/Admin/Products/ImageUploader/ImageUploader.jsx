@@ -45,9 +45,10 @@ export const ImageUploader = ({className, maxImages, onUpload}) => {
         newFiles.push({file, url: imageUrl});
         console.log('New files array:', newFiles);
         if (newFiles.length === filesToAdd.length) {
+          newFiles = newFiles.filter((fileObj) => isImageAllowed(fileObj.file));
           setAllSelectedFiles(newFiles);
           setFilesUploaded(true);
-          onUpload(newFiles.filter((fileObj) => isImageAllowed(fileObj.file)).map((fileObj) => fileObj.file));
+          onUpload(newFiles.map((fileObj) => fileObj.file));
         }
       };
       reader.readAsDataURL(file);
