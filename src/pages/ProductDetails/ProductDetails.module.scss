@@ -3,17 +3,6 @@
   gap: 80px;
 }
 
-.gallery {
-  display: grid;
-  grid-gap: 30px;
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 600px;
-
-  img {
-    @include objectCoverBg;
-  }
-}
-
 .title {
   font-size: 38px;
   line-height: 1.2;
@@ -59,16 +48,7 @@
   gap: 8px;
   align-items: center;
   font-size: 16px;
-}
-
-.tooltip {
-  display: flex;
-
-  &:hover {
-    svg path {
-      stroke: $maroon;
-    }
-  }
+  color: $gray700;
 }
 
 .bonus {
@@ -119,10 +99,16 @@
   }
 
   &:active {
-    color: $pink900;
+    color: $accent;
 
     svg path {
-      stroke: $pink900;
+      fill: $accent;
+      stroke: $accent;
     }
+  }
+
+  svg path {
+    transition: all .4s;
+    fill: transparent;
   }
 }

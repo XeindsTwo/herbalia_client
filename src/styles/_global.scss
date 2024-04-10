@@ -156,6 +156,15 @@ ol {
   color: $black400 !important;
 }
 
+.swiper-slide-thumb-active {
+  pointer-events: none;
+
+  &::before {
+    background-color: rgba($accent, .3) !important;
+    outline-color: $accent !important;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }

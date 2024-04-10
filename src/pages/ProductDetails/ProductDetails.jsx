@@ -5,10 +5,11 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import {Error404} from "../Errors/Error404.jsx";
 import {formatPrice} from '../../utils/priceUtils.js';
-import InfoIcon from '../../assets/images/icons/product/info.svg?react';
 import LikeIcon from '../../assets/images/icons/product/like.svg?react';
 import {Breadcrumbs} from "../../components/Breadcrumbs/Breadcrumbs.jsx";
 import {Contacts} from "../../components/Contacts/Contacts.jsx";
+import {SwiperGallery} from "./SwiperGallery/SwiperGallery.jsx";
+import {ProductInfoSection} from "./ProductInfoSection/ProductInfoSection.jsx";
 
 export const ProductDetails = () => {
   const {id} = useParams();
@@ -34,14 +35,20 @@ export const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  if (notFound) {
+  useEffect(() => {
+    if (product) {
+      document.title = `Букет "${product.name}" заказать с доставкой недорого`;
+    }
+  }, [product]);
+
+  if (notFound || !product) {
     return (
       <Error404/>
     );
   }
 
   return (
-    <Layout>
+    <Layout isLoading={loading}>
       <section className='indent--breadcrumbs'>
         <div className='container'>
           <Breadcrumbs
@@ -54,51 +61,36 @@ export const ProductDetails = () => {
               }
             ]}
           />
-          {product && (
-            <div className={styles.inner}>
-              <div className={styles.gallery}>
-                {product.images.map(image => (
-                  <img key={image.id} src={image.url} width={450} height={450} alt={image.name}/>
-                ))}
+          <div className={styles.inner}>
+            <SwiperGallery images={product.images}/>
+            <div className={styles.content}>
+              <h1 className={styles.title}>Букет "{product.name}"</h1>
+              <span className={styles.undertitle}>Артикул: {product.article}</span>
+              <div className={styles.top}>
+                <span className={styles.in}>Ближайшая доставка через 2 часа</span>
+                <p>с 10:00 до 23:00</p>
               </div>
-              <div className={styles.content}>
-                <h1 className={styles.title}>Букет "{product.name}"</h1>
-                <span className={styles.undertitle}>Артикул: {product.article}</span>
-                <div className={styles.top}>
-                  <span className={styles.in}>Ближайшая доставка через 2 часа</span>
-                  <p>с 10:00 до 23:00</p>
-                </div>
-
-                <div className={styles.business}>
-                  <div>
-                    <span className={styles.price}>{formatPrice(product.price)}</span>
-                    <div className={styles.delivery}>
-                      Цена с доставкой
-                      <button className={styles.tooltip}>
-                        <InfoIcon/>
-                      </button>
-                    </div>
-                    <div className={styles.bonus}>Вы получите 96 баллов</div>
+              <div className={styles.business}>
+                <div>
+                  <span className={styles.price}>{formatPrice(product.price)}</span>
+                  <div className={styles.delivery}>
+                    Цена с доставкой
                   </div>
-                  <button className={styles.order} type={"button"}>Оформить заказ</button>
+                  <div className={styles.bonus}>Вы получите 96 баллов</div>
                 </div>
-
-                <button className={styles.like} type="button">
-                  <LikeIcon/>
-                  В любимчики
-                </button>
-
-                <h3>Состав товара:</h3>
-                <ul>
-                  {product.composition.map(item => (
-                    <li key={item.id}>{item.name}: {item.quantity}</li>
-                  ))}
-                </ul>
+                <button className={styles.order} type={"button"}>Оформить заказ</button>
               </div>
+              <button className={styles.like} type="button">
+                <LikeIcon/>
+                В любимчики
+              </button>
             </div>
-          )}
+          </div>
         </div>
       </section>
+      {product && (
+        <ProductInfoSection composition={product.composition}/>
+      )}
       <Contacts/>
     </Layout>
   );

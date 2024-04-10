@@ -1,0 +1,84 @@
+.tab {
+  background-color: $white;
+  border-radius: 0 8px 8px 8px;
+  box-shadow: 0 4px 10px rgba(53, 64, 71, .04);
+  padding: 40px 40px 48px;
+  font-size: 16px;
+}
+
+.columns {
+  display: flex;
+  gap: 40px;
+}
+
+.name {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 12px;
+
+  span {
+    color: $gray500;
+    font-weight: 400;
+    margin-left: 8px;
+  }
+}
+
+.composition {
+  @include flex-column(6);
+  color: $gray500;
+}
+
+.text {
+  margin-bottom: 40px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 30px;
+  padding: 7px 14px;
+  color: $black400;
+  background: $white;
+  box-shadow: 0 6px 20px 0 rgba(53, 64, 71, .1);
+  outline: 2px solid transparent;
+  transition: color .4s, box-shadow .4s, outline-color .2s;
+
+  &:hover {
+    color: $maroon50;
+    box-shadow: 0 10px 20px 0 rgba(53, 64, 71, 0.2);
+
+    .circle {
+      background-color: $pink600;
+    }
+  }
+
+  &:focus {
+    outline-color: $accent;
+  }
+
+  &:active {
+    color: #4e1528;
+    background-color: $white;
+    box-shadow: 0 2px 8px 0 rgba(53, 64, 71, .15);
+
+    .circle {
+      background-color: $pink300;
+    }
+  }
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  width: 26px;
+  height: 26px;
+  margin-right: -5px;
+  margin-left: 9px;
+  background-color: $pink100;
+  border-radius: 50%;
+  transition: 0.3s;
+}

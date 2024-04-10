@@ -1,0 +1,26 @@
+.bottom {
+  margin-top: 60px;
+  position: relative;
+  z-index: 20;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px 36px;
+}
+
+.link {
+  font-size: 18px;
+  outline: 2px solid transparent;
+  border-radius: 5px;
+  transition: color .4s, outline-color .4s;
+
+  &:hover {
+    color: $accent;
+  }
+
+  &:focus {
+    outline-color: $accent;
+  }
+}

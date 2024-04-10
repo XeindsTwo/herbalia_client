@@ -1,0 +1,23 @@
+.button {
+  background-color: $white200;
+  line-height: 1.33;
+  font-weight: 700;
+  padding: 16px 24px;
+  border-radius: 4px 4px 0 0;
+  transition: color .4s, background-color .4s;
+
+  &:hover {
+    color: $maroon50;
+    background: $pink100;
+  }
+
+  &:active {
+    color: $maroon;
+    background: $white100;
+  }
+
+  &.active {
+    pointer-events: none;
+    background-color: $white;
+  }
+}

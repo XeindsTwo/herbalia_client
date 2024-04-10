@@ -1,0 +1,54 @@
+.info {
+  padding: 80px 0;
+  background-color: #f8f8f8;
+  margin-bottom: -80px;
+  position: relative;
+}
+
+.benefits, .buttons, .tabs {
+  position: relative;
+  z-index: 10;
+}
+
+.benefits {
+  display: flex;
+  gap: 20px 30px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+
+  &_item {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+
+    &::before {
+      @include top50;
+      @include pseudo;
+      @include bg;
+      transform: translateY(-70%);
+      left: 0;
+      width: 13px;
+      height: 10px;
+      background-image: url("/src/assets/images/icons/check.svg");
+    }
+  }
+}
+
+.buttons, .tabs {
+  max-width: 800px;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 48px;
+}
+
+.decor {
+  @include objectCoverBg;
+  @include topLeft50;
+  transform: translateX(34%);
+  position: absolute;
+  z-index: 0;
+}

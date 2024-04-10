@@ -5,6 +5,8 @@ import {HelpMenu} from "./HelpMenu/HelpMenu.jsx";
 import {ButtonsActions} from "./ButtonsActions/ButtonsActions.jsx";
 import {Link} from "react-router-dom";
 import {AuthContent} from "../../utils/AuthContent.jsx";
+import {CategoryNavigation} from "./CategoryNavigation/CategoryNavigation.jsx";
+import headerDecor from '../../assets/images/header.svg';
 
 export const Header = () => {
   const [isHelpMenuOpen, setIsHelpMenuOpen] = useState(false);
@@ -79,7 +81,9 @@ export const Header = () => {
             <ButtonsActions/>
           </div>
         </div>
+        <CategoryNavigation/>
       </div>
+      <img className={styles.decor} src={headerDecor} width={1005} height={195}/>
     </header>
   )
-}
+};
