@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import styles from './CategoryNavigation.module.scss';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export const CategoryNavigation = () => {
   const [categories, setCategories] = useState([]);
@@ -37,7 +37,7 @@ export const CategoryNavigation = () => {
       <ul className={styles.list}>
         {categories.map(category => (
           <li key={category.id}>
-            <Link className={styles.link} to={`/catalog/${category.id}`}>{category.name}</Link>
+            <Link className={styles.link} to={`/catalog/${(category.id)}`}>{category.name}</Link>
           </li>
         ))}
       </ul>

@@ -2,7 +2,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import styles from "./SwiperGallery.module.scss";
 import {Keyboard, Navigation, Thumbs} from "swiper/modules";
 import {useState} from "react";
-import ArrowIcon from "../../../assets/images/icons/product/arrow.svg?react";
+import ArrowIcon from "../../../../assets/images/icons/product/arrow.svg?react";
 import {SwiperThumbs} from "./SwiperThumbs/SwiperThumbs.jsx";
 
 export const SwiperGallery = ({images}) => {

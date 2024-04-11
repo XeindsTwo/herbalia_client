@@ -1,18 +1,18 @@
-import {Layout} from "../../components/Layout.jsx";
+import {Layout} from "../../../components/Layout.jsx";
 import styles from './ProductDetails.module.scss';
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import {Error404} from "../Errors/Error404.jsx";
-import {formatPrice} from '../../utils/priceUtils.js';
-import LikeIcon from '../../assets/images/icons/product/like.svg?react';
-import {Breadcrumbs} from "../../components/Breadcrumbs/Breadcrumbs.jsx";
-import {Contacts} from "../../components/Contacts/Contacts.jsx";
+import {Error404} from "../../Errors/Error404.jsx";
+import {formatPrice} from '../../../utils/priceUtils.js';
+import LikeIcon from '../../../assets/images/icons/product/like.svg?react';
+import {Breadcrumbs} from "../../../components/Breadcrumbs/Breadcrumbs.jsx";
+import {Contacts} from "../../../components/Contacts/Contacts.jsx";
 import {SwiperGallery} from "./SwiperGallery/SwiperGallery.jsx";
 import {ProductInfoSection} from "./ProductInfoSection/ProductInfoSection.jsx";
 
 export const ProductDetails = () => {
-  const {id} = useParams();
+  const {categoryId, productId} = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
@@ -20,8 +20,8 @@ export const ProductDetails = () => {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const response = await axios.get(`/products/${id}`);
-        const productData = response.data.product;
+        const response = await axios.get(`/catalog/${categoryId}/${productId}`);
+        const productData = response.data;
         setProduct(productData);
         setLoading(false);
       } catch (error) {
@@ -33,7 +33,7 @@ export const ProductDetails = () => {
     }
 
     fetchProduct();
-  }, [id]);
+  }, [categoryId, productId]);
 
   useEffect(() => {
     if (product) {
@@ -57,7 +57,7 @@ export const ProductDetails = () => {
               {label: 'Каталог', to: '/catalog'},
               {
                 label: product && product.category ? product.category.name : '',
-                to: product && product.category ? `/catalog/${product.category.id}` : ''
+                to: `/catalog/${categoryId}`
               }
             ]}
           />

@@ -1,0 +1,53 @@
+.top {
+  @include flex-between(30);
+  align-items: baseline;
+  margin-bottom: 42px;
+}
+
+.name {
+  font-family: $didona;
+  font-size: 44px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.counters {
+  @include flex-align-center(24);
+  font-size: 16px;
+  color: $gray500;
+}
+
+.list {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 50px;
+}
+
+.img {
+  @include objectCoverBg;
+  border-radius: 7px;
+  margin-bottom: 10px;
+}
+
+.name_product {
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.delivery {
+  @include flex-column(5);
+  font-size: 14px;
+  color: $gray500;
+}
+
+.time {
+  font-size: 12px;
+}
+
+.price {
+  display: flex;
+  font-weight: 700;
+  margin-top: 10px;
+}

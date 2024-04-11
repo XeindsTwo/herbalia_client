@@ -36,7 +36,8 @@ import {ApprovedReviewsHomepage} from "./pages/Admin/Reviews/ApprovedReviewsHome
 import {Improvements} from "./pages/Admin/Improvements/Improvements.jsx";
 import {MainProducts} from "./pages/Admin/Products/MainProducts/MainProducts.jsx";
 import {CreateProduct} from "./pages/Admin/Products/CreateProduct/CreateProduct.jsx";
-import {ProductDetails} from "./pages/ProductDetails/ProductDetails.jsx";
+import {ProductDetails} from "./pages/Catalog/ProductDetails/ProductDetails.jsx";
+import {CategoryProducts} from "./pages/Catalog/CategoryProducts.jsx";
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 axios.defaults.withCredentials = true;
@@ -75,8 +76,9 @@ const App = () => {
             <Route path="/privacy" element={<Privacy/>}/>
             <Route path="/quality-control" element={<QualityControl/>}/>
 
-            {/*Детальная страница товара*/}
-            <Route path="/catalog/:id" element={<ProductDetails/>}/>
+            {/*Работа с каталогом*/}
+            <Route path="/catalog/:categoryId" element={<CategoryProducts/>}/>
+            <Route path="/catalog/:categoryId/:productId" element={<ProductDetails/>}/>
 
             {/* Работа с отзывами */}
             <Route path="/reviews" element={<ReviewsPage/>}/>

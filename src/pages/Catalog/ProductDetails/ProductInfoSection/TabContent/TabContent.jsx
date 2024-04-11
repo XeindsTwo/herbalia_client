@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import styles from './TabContent.module.scss';
-import ArrowCircle from '../../../../assets/images/icons/arrow-circle.svg?react';
+import ArrowCircle from '../../../../../assets/images/icons/arrow-circle.svg?react';
 
 export const TabContent = ({activeTab, composition}) => {
   return (

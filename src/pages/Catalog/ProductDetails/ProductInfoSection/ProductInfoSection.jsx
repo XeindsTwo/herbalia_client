@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styles from "./ProductInfoSection.module.scss";
-import decorSrc from '../../../assets/images/bird-proudct-detail.svg';
+import decorSrc from '../../../../assets/images/bird-proudct-detail.svg';
 import {TabButton} from "./TabButton/TabButton.jsx";
 import {TabContent} from "./TabContent/TabContent.jsx";
 
