@@ -10,8 +10,10 @@ import {Breadcrumbs} from "../../../components/Breadcrumbs/Breadcrumbs.jsx";
 import {Contacts} from "../../../components/Contacts/Contacts.jsx";
 import {SwiperGallery} from "./SwiperGallery/SwiperGallery.jsx";
 import {ProductInfoSection} from "./ProductInfoSection/ProductInfoSection.jsx";
+import {Favorites} from "../../../components/Favorites/Favorites.jsx";
 
 export const ProductDetails = () => {
+  const {favorites, handleToggleFavorite} = Favorites();
   const {categoryId, productId} = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,12 +36,6 @@ export const ProductDetails = () => {
 
     fetchProduct();
   }, [categoryId, productId]);
-
-  useEffect(() => {
-    if (product) {
-      document.title = `Букет "${product.name}" заказать с доставкой недорого`;
-    }
-  }, [product]);
 
   if (notFound || !product) {
     return (
@@ -76,11 +72,14 @@ export const ProductDetails = () => {
                   <div className={styles.delivery}>
                     Цена с доставкой
                   </div>
-                  <div className={styles.bonus}>Вы получите 96 баллов</div>
                 </div>
                 <button className={styles.order} type={"button"}>Оформить заказ</button>
               </div>
-              <button className={styles.like} type="button">
+              <button
+                className={`${styles.like} ${favorites.includes(product.id) ? `${styles.like_active}` : ''}`}
+                type="button"
+                onClick={() => handleToggleFavorite(product.id)}
+              >
                 <LikeIcon/>
                 В любимчики
               </button>

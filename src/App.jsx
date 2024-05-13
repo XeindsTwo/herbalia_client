@@ -34,10 +34,13 @@ import {UnapprovedReviews} from "./pages/Admin/Reviews/UnapprovedReviews.jsx";
 import {ApprovedReviews} from "./pages/Admin/Reviews/ApprovedReviews.jsx";
 import {ApprovedReviewsHomepage} from "./pages/Admin/Reviews/ApprovedReviewsHomepage.jsx";
 import {Improvements} from "./pages/Admin/Improvements/Improvements.jsx";
-import {MainProducts} from "./pages/Admin/Products/MainProducts/MainProducts.jsx";
+import {ProductsCategory} from "./pages/Admin/Products/ProductsCategory/ProductsCategory.jsx";
 import {CreateProduct} from "./pages/Admin/Products/CreateProduct/CreateProduct.jsx";
 import {ProductDetails} from "./pages/Catalog/ProductDetails/ProductDetails.jsx";
 import {CategoryProducts} from "./pages/Catalog/CategoryProducts.jsx";
+import {MainPage} from "./pages/Admin/Products/MainPage/MainPage.jsx";
+import {EditProduct} from "./pages/Admin/Products/EditProduct/EditProduct.jsx";
+import {FavoritesPage} from "./pages/FavoritesPage/FavoritesPage.jsx";
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 axios.defaults.withCredentials = true;
@@ -77,8 +80,9 @@ const App = () => {
             <Route path="/quality-control" element={<QualityControl/>}/>
 
             {/*Работа с каталогом*/}
-            <Route path="/catalog/:categoryId" element={<CategoryProducts/>}/>
+            <Route path="/catalog/*" element={<Error404/>}/>
             <Route path="/catalog/:categoryId/:productId" element={<ProductDetails/>}/>
+            <Route path="/catalog/:categoryId" element={<CategoryProducts/>}/>
 
             {/* Работа с отзывами */}
             <Route path="/reviews" element={<ReviewsPage/>}/>
@@ -95,8 +99,10 @@ const App = () => {
             {/* Админ панель */}
             <Route path="/admin/*" element={<AdminWrapper/>}>
               <Route path="products/*">
-                <Route path="main" element={<MainProducts/>}/>
+                <Route path="main" element={<MainPage/>}/>
                 <Route path="create" element={<CreateProduct/>}/>
+                <Route path="category/:categoryId" element={<ProductsCategory/>}/>
+                <Route path=":id/edit" element={<EditProduct/>}/>
                 <Route path="*" element={<Error404/>}/>
               </Route>
               <Route path="categories" element={<Categories/>}/>
@@ -110,6 +116,8 @@ const App = () => {
               <Route path="*" element={<Error404/>}/>
             </Route>
 
+            {/*Избранное, корзина*/}
+            <Route path="/favorites" element={<FavoritesPage/>}/>
           </Routes>
         </Router>
       </QueryClientProvider>

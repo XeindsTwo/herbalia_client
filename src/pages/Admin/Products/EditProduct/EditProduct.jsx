@@ -1,15 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {AdminLayout} from '../../../../components/AdminLayout.jsx';
-import styles from './CreateProduct.module.scss';
+import styles from './EditProduct.module.scss';
 import {NameInput} from '../../../../components/FormFields/Product/NameInput.jsx';
 import {PriceInput} from '../../../../components/FormFields/Product/PriceInput.jsx';
-import {ImageUploader} from '../ImageUploader/ImageUploader.jsx';
-import {ProductCompositions} from '../ProductCompositions/ProductCompositions.jsx';
 import axios from 'axios';
 import {toast} from "react-toastify";
 import {validateProductName, validateProductPrice} from "../../../../utils/validationUtils.js";
+import {ImageUploaderEdit} from "../ImageUploader/ImageUploaderEdit.jsx";
+import {useParams} from "react-router-dom";
+import {ProductCompositionsEdit} from "../ProductCompositions/ProductCompositionsEdit.jsx";
 
-export const CreateProduct = () => {
+export const EditProduct = () => {
   const [categories, setCategories] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
@@ -20,6 +21,7 @@ export const CreateProduct = () => {
   });
   const [nameError, setNameError] = useState('');
   const [priceError, setPriceError] = useState('');
+  const {id} = useParams();
 
   useEffect(() => {
     async function fetchCategories() {
@@ -36,8 +38,40 @@ export const CreateProduct = () => {
       }
     }
 
+    fetchProductData(id);
     fetchCategories();
   }, []);
+
+  const fetchProductData = async (productId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`/admin/products/${productId}/edit`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      const {product, categories, images, composition} = response.data;
+      const compositionWithIds = composition.map(item => ({
+        id: item.id,
+        name: item.name,
+        quantity: item.quantity
+      }));
+
+      setFormData({
+        ...formData,
+        name: product.name,
+        price: product.price,
+        category_id: product.category_id,
+        photos: images.map(image => ({file: {name: image.name}, url: image.url})),
+        composition: compositionWithIds
+      });
+      setCategories(categories);
+    } catch (error) {
+      console.error('Ошибка при загрузке данных о товаре:', error);
+      toast.error('Произошла ошибка при загрузке данных о товаре. Пожалуйста, попробуйте еще раз');
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -91,24 +125,21 @@ export const CreateProduct = () => {
       });
 
       formData.composition.forEach((item, index) => {
+        formDataToSend.append(`composition[${index}][id]`, item.id);
         formDataToSend.append(`composition[${index}][name]`, item.name);
         formDataToSend.append(`composition[${index}][quantity]`, item.quantity);
       });
 
-      const response = await axios.post('/admin/products/create', formDataToSend, {
+      const response = await axios.post(`/admin/products/${id}/edit`, formDataToSend, {
+        method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
         }
       });
 
-      toast.success('Товар успешно создан');
-      setTimeout(() => {
-        const categoryId = formData.category_id;
-        if (categoryId && !isNaN(categoryId)) {
-          window.location.href = `/admin/products/category/${categoryId}`;
-        }
-      }, 3000);
+      toast.success('Товар успешно обновлён');
+      console.log(response.data);
     } catch (error) {
       console.error('Ошибка при создании товара:', error);
       toast.error('Произошла ошибка при создании товара. Пожалуйста, попробуйте еще раз');
@@ -133,12 +164,19 @@ export const CreateProduct = () => {
     setPriceError(error);
   };
 
+  const removeImage = (index) => {
+    setFormData((prevState) => {
+      const updatedPhotos = prevState.photos.filter((_, i) => i !== index);
+      return {...prevState, photos: updatedPhotos};
+    });
+  };
+
   return (
     <AdminLayout>
       <section>
         <div className="container container--admin">
           <div className={styles.form}>
-            <h1 className="admin__title">Создание товара</h1>
+            <h1 className="admin__title">Редактирование товара</h1>
             <form onSubmit={handleSubmit}>
               <div className={styles.content}>
                 <ul className={styles.items}>
@@ -180,24 +218,26 @@ export const CreateProduct = () => {
                     </select>
                   </li>
                 </ul>
-                <ImageUploader
+                <ImageUploaderEdit
                   className={styles.files}
                   maxImages={4}
                   formData={formData}
+                  setFormData={setFormData}
                   onUpload={(photos) => setFormData(prevState => ({
                     ...prevState,
                     photos: [...prevState.photos, ...photos]
                   }))}
-                  setFormData={setFormData}
+                  onImageRemove={removeImage}
                 />
-                <ProductCompositions
+                <ProductCompositionsEdit
+                  composition={formData.composition}
                   onChange={(composition) =>
                     setFormData({...formData, composition})
                   }
                 />
               </div>
               <button className={styles.create} type="submit">
-                Создать товар
+                Сохранить изменения
               </button>
             </form>
           </div>

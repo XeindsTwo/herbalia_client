@@ -13,7 +13,7 @@ export const SwiperThumbs = ({images, onSwiper}) => {
     >
       {images.map((image, index) => (
         <SwiperSlide className={styles.thumb} key={index}>
-          <img src={image.url} alt={image.name}/>
+          <img src={image.url} alt={image.name} width={116} height={116}/>
         </SwiperSlide>
       ))}
     </Swiper>

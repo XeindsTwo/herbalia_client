@@ -1,0 +1,57 @@
+.form {
+  background-color: $white;
+  box-shadow: 0 6px 20px 0 rgba(53, 64, 71, 0.1);
+  padding: 40px 40px 30px;
+  border-radius: 25px;
+}
+
+.content {
+  @include flex-column(70);
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+
+  input {
+    max-width: 100%;
+  }
+}
+
+.files {
+  @include flex-column(0);
+
+  label {
+    align-self: flex-start;
+  }
+}
+
+.create {
+  background-color: $maroon;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  color: $white;
+  line-height: 1;
+  font-size: 16px;
+  padding: 14px 30px;
+  transition: color .4s, opacity .4s, border .4s, background-color .4s;
+
+  &:disabled {
+    pointer-events: none;
+    user-select: none;
+    opacity: .3;
+  }
+
+  &:hover {
+    background-color: transparent;
+    border-color: $maroon;
+    color: $black;
+  }
+
+  &:focus {
+    background-color: $accent;
+    color: $white;
+    border-color: transparent;
+  }
+}

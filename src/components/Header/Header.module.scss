@@ -1,11 +1,30 @@
 .header {
-  padding: 24px 0 42px;
+  @include objectCoverBg;
   position: relative;
   font-size: 16px;
-  background-color: $pink100;
+  color: $white;
+  background-image: url("../../assets/images/header-bg.webp");
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#000, .15);
+    box-shadow: inset 0 700px 200px -500px rgba(61, 21, 34, .7);
+  }
 }
 
 .inner {
+  @include flex-column(40);
+  min-height: 330px;
+  padding: 24px 0 30px;
+}
+
+.wrapper {
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -53,7 +72,7 @@
   }
 
   &_phone {
-    color: $maroon;
+    color: $pink300;
     font-size: 18px;
 
     &:hover {
@@ -63,7 +82,7 @@
 
   &_link {
     &:hover {
-      color: #c06c84;
+      color: $accent;
     }
   }
 }
@@ -91,12 +110,12 @@
 
     &::before {
       @include pseudo;
-      bottom: -2px;
+      bottom: -3px;
       left: 0;
       width: 0;
       height: 1px;
       transition: width .4s;
-      background-color: $maroon;
+      background-color: $pink300;
     }
   }
 }
@@ -129,6 +148,7 @@
   transition: color .4s, outline .4s, border .4s;
   border-bottom: 1px solid transparent;
   font-size: 14px;
+  color: $pink100;
 
   &:hover {
     color: $accent;
@@ -158,6 +178,6 @@
 
 .decor {
   position: absolute;
-  top: 95px;
-  left: -525px;
+  top: 115px;
+  left: -555px;
 }

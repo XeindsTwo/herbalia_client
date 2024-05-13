@@ -156,6 +156,52 @@ ol {
   color: $black400 !important;
 }
 
+.like {
+  @include flex-center;
+  background-color: $white;
+  padding: 4px;
+  width: 35px;
+  height: 35px;
+  border-radius: 7px;
+  position: absolute;
+  z-index: 50;
+  right: 20px;
+  top: 16px;
+  transition: background-color .4s;
+
+  &:hover {
+    svg path {
+      fill: $accent;
+    }
+  }
+
+  &:focus {
+    background-color: $pink300;
+
+    svg path {
+      stroke: $white;
+      fill: transparent;
+    }
+  }
+
+  &.active {
+    svg g path {
+      fill: $red500;
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    &:focus {
+      background-color: $pink900;
+      svg g path {
+        fill: $white;
+      }
+    }
+  }
+}
+
 .swiper-slide-thumb-active {
   pointer-events: none;
 

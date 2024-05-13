@@ -4,6 +4,10 @@
   grid-gap: 50px 30px;
 }
 
+.search {
+  margin-bottom: 20px;
+}
+
 .head {
   position: relative;
   margin-bottom: 15px;
@@ -42,6 +46,18 @@
 
     &:focus {
       background-color: rgba(#152f3d, .75);
+    }
+  }
+
+  &_edit {
+    background-color: #153d26;
+
+    &:hover {
+      background-color: #24653e;
+    }
+
+    &:focus {
+      background-color: rgba(#153d26, .75);
     }
   }
 

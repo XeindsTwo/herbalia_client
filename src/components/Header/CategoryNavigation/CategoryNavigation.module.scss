@@ -1,5 +1,5 @@
 .bottom {
-  margin-top: 60px;
+  margin-top: auto;
   position: relative;
   z-index: 20;
 }
@@ -17,10 +17,10 @@
   transition: color .4s, outline-color .4s;
 
   &:hover {
-    color: $accent;
+    color: $pink100;
   }
 
   &:focus {
-    outline-color: $accent;
+    outline-color: $pink100;
   }
 }

@@ -29,7 +29,8 @@
 }
 
 .business {
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
   display: flex;
   gap: 48px;
   margin-bottom: 48px;
@@ -38,6 +39,7 @@
 .price {
   display: block;
   font-size: 40px;
+  min-width: 150px;
   line-height: 1.2;
   font-weight: 500;
   white-space: nowrap;
@@ -88,7 +90,9 @@
   font-size: 20px;
   display: flex;
   gap: 8px;
-  transition: color .4s;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: color .4s, border .4s;
 
   &:hover {
     color: $accent;
@@ -96,6 +100,10 @@
     svg path {
       stroke: $accent;
     }
+  }
+
+  &:focus {
+    border-color: $accent;
   }
 
   &:active {
@@ -110,5 +118,12 @@
   svg path {
     transition: all .4s;
     fill: transparent;
+  }
+
+  &_active {
+    svg path {
+      fill: $pink1300;
+      stroke: transparent;
+    }
   }
 }
