@@ -1,17 +1,19 @@
-import { useState } from 'react';
-import { useQuery } from 'react-query';
+import {useState} from 'react';
+import {useQuery} from 'react-query';
 import axios from 'axios';
-import { Layout } from '../../components/Layout.jsx';
-import { useParams, Link } from 'react-router-dom';
-import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs.jsx';
-import { formatPrice } from '../../utils/priceUtils.js';
+import {Layout} from '../../components/Layout.jsx';
+import {useParams, Link} from 'react-router-dom';
+import {Breadcrumbs} from '../../components/Breadcrumbs/Breadcrumbs.jsx';
+import {formatPrice} from '../../utils/priceUtils.js';
 import vase from '../../assets/images/icons/vase.svg';
 import styles from './CategoryProducts.module.scss';
 import Skeleton from 'react-loading-skeleton';
 import HeartIcon from '../../assets/images/icons/heart.svg?react';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { Favorites } from "../../components/Favorites/Favorites.jsx";
-import { Contacts } from "../../components/Contacts/Contacts.jsx";
+import {Favorites} from "../../components/CartAndFavorites/Favorites.jsx";
+import {Contacts} from "../../components/Contacts/Contacts.jsx";
+import {Cart} from "../../components/CartAndFavorites/Cart.jsx";
+import {useSelector} from "react-redux";
 
 const fetchProductsByCategory = async (categoryId) => {
   const response = await axios.get(`/catalog/${categoryId}`);
@@ -19,11 +21,17 @@ const fetchProductsByCategory = async (categoryId) => {
 };
 
 export const CategoryProducts = () => {
+  const cartItems = useSelector(state => state.cart.cartItems);
   const [sortMethod, setSortMethod] = useState('newest');
-  const { favorites, handleToggleFavorite } = Favorites();
-  const { categoryId } = useParams();
+  const {favorites, handleToggleFavorite} = Favorites();
+  const {handleAddToCart} = Cart();
+  const {categoryId} = useParams();
 
-  const { data, isLoading, isError } = useQuery(['categoryProducts', categoryId], () => fetchProductsByCategory(categoryId));
+  const {
+    data,
+    isLoading,
+    isError
+  } = useQuery(['categoryProducts', categoryId], () => fetchProductsByCategory(categoryId));
 
   const sortProducts = (method, products) => {
     if (!products) return [];
@@ -43,13 +51,17 @@ export const CategoryProducts = () => {
 
   const sortedProducts = sortProducts(sortMethod, data?.products);
 
+  const isInCart = (productId) => {
+    return cartItems.some(item => item.id === productId);
+  };
+
   return (
     <Layout>
       <section className={'indent--breadcrumbs'}>
         <div className="container">
           <Breadcrumbs
             current={data?.category_name}
-            additional={[{ label: 'Каталог', to: '/catalog' }]}
+            additional={[{label: 'Каталог', to: '/catalog'}]}
           />
           <div className={styles.top}>
             <h1 className={styles.name}>{data?.category_name}</h1>
@@ -64,8 +76,8 @@ export const CategoryProducts = () => {
             <ul className={styles.list}>
               {[...Array(4)].map((_, index) => (
                 <li key={index}>
-                  <Skeleton height={300} />
-                  <Skeleton count={4} />
+                  <Skeleton height={300}/>
+                  <Skeleton count={4}/>
                 </li>
               ))}
             </ul>
@@ -74,7 +86,7 @@ export const CategoryProducts = () => {
               {isError && <div>Ошибка при загрузке товаров</div>}
               {data?.products.length === 0 && !isError && (
                 <div className={styles.empty}>
-                  <img src={vase} alt="Ваза декор" width={70} height={88} />
+                  <img src={vase} alt="Ваза декор" width={70} height={88}/>
                   <span className={styles.empty_top}>В разделе пока пусто</span>
                   <p>В скором времени здесь появятся товары :)</p>
                 </div>
@@ -94,7 +106,7 @@ export const CategoryProducts = () => {
                           type="button"
                           onClick={() => handleToggleFavorite(product.id)}
                         >
-                          <HeartIcon />
+                          <HeartIcon/>
                         </button>
                         <Link className={styles.link_img} to={`/catalog/${categoryId}/${product.id}`}>
                           <img
@@ -114,6 +126,16 @@ export const CategoryProducts = () => {
                           <span className={styles.time}>с 10:00 до 23:00</span>
                         </p>
                         <span className={styles.price}>{formatPrice(product.price)}</span>
+                        {isInCart(product.id) ? (
+                          <Link className={'add active'} to="/cart">В корзине</Link>
+                        ) : (
+                          <button
+                            className={'add'}
+                            onClick={() => handleAddToCart(product.id, 1)}
+                          >
+                            Купить
+                          </button>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -123,7 +145,7 @@ export const CategoryProducts = () => {
           )}
         </div>
       </section>
-      <Contacts />
+      <Contacts/>
     </Layout>
   );
 };

@@ -10,8 +10,9 @@ import styles from './CategoryProducts.module.scss';
 import Skeleton from 'react-loading-skeleton';
 import HeartIcon from '../../assets/images/icons/heart.svg?react';
 import 'react-loading-skeleton/dist/skeleton.css';
-import {Favorites} from "../../components/Favorites/Favorites.jsx";
+import {Favorites} from "../../components/CartAndFavorites/Favorites.jsx";
 import {Contacts} from "../../components/Contacts/Contacts.jsx";
+import {Cart} from "../../components/CartAndFavorites/Cart.jsx";
 
 const fetchProducts = async () => {
   const response = await axios.get(`/catalog`);
@@ -23,6 +24,7 @@ export const Catalog = () => {
 
   const [sortMethod, setSortMethod] = useState('newest');
   const {favorites, handleToggleFavorite} = Favorites();
+  const {cartItems, handleAddToCart} = Cart();
 
   const sortProducts = (method, products) => {
     if (!products) return [];
@@ -41,6 +43,10 @@ export const Catalog = () => {
   };
 
   const sortedProducts = sortProducts(sortMethod, data?.products);
+
+  const isInCart = (productId) => {
+    return cartItems.some(item => item.id === productId);
+  };
 
   return (
     <Layout>
@@ -112,6 +118,16 @@ export const Catalog = () => {
                           <span className={styles.time}>с 10:00 до 23:00</span>
                         </p>
                         <span className={styles.price}>{formatPrice(product.price)}</span>
+                        {isInCart(product.id) ? (
+                          <Link className={'add active'} to="/cart">В корзине</Link>
+                        ) : (
+                          <button
+                            className={'add'}
+                            onClick={() => handleAddToCart(product.id, 1)}
+                          >
+                            Купить
+                          </button>
+                        )}
                       </li>
                     ))}
                   </ul>

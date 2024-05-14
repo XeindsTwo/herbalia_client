@@ -10,10 +10,12 @@ import {Breadcrumbs} from "../../../components/Breadcrumbs/Breadcrumbs.jsx";
 import {Contacts} from "../../../components/Contacts/Contacts.jsx";
 import {SwiperGallery} from "./SwiperGallery/SwiperGallery.jsx";
 import {ProductInfoSection} from "./ProductInfoSection/ProductInfoSection.jsx";
-import {Favorites} from "../../../components/Favorites/Favorites.jsx";
+import {Favorites} from "../../../components/CartAndFavorites/Favorites.jsx";
+import {Cart} from "../../../components/CartAndFavorites/Cart.jsx";
 
 export const ProductDetails = () => {
   const {favorites, handleToggleFavorite} = Favorites();
+  const {handleAddToCart} = Cart();
   const {categoryId, productId} = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -73,7 +75,13 @@ export const ProductDetails = () => {
                     Цена с доставкой
                   </div>
                 </div>
-                <button className={styles.order} type={"button"}>Оформить заказ</button>
+                <button
+                  className={styles.order}
+                  type={"button"}
+                  onClick={() => handleAddToCart(product.id, 1)}
+                >
+                  Оформить заказ
+                </button>
               </div>
               <button
                 className={`${styles.like} ${favorites.includes(product.id) ? `${styles.like_active}` : ''}`}

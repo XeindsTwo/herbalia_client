@@ -1,7 +1,7 @@
 import React from 'react';
 import {useQuery} from 'react-query';
 import axios from 'axios';
-import {Favorites} from "../../../components/Favorites/Favorites.jsx";
+import {Favorites} from "../../../components/CartAndFavorites/Favorites.jsx";
 import {Category} from "./Category/Category.jsx";
 
 const fetchCategoriesWithProducts = async () => {

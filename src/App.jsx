@@ -44,6 +44,7 @@ import {FavoritesPage} from "./pages/FavoritesPage/FavoritesPage.jsx";
 import {Catalog} from "./pages/Catalog/Catalog.jsx";
 import {SearchPage} from "./pages/SearchPage/SearchPage.jsx";
 import {CorporateStatements} from "./pages/Admin/CorporateStatements/CorporateStatements.jsx";
+import {Cart} from "./pages/Cart/Cart.jsx";
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 axios.defaults.withCredentials = true;
@@ -88,6 +89,8 @@ const App = () => {
             <Route path="/catalog/" element={<Catalog/>}/>
             <Route path="/catalog/:categoryId/:productId" element={<ProductDetails/>}/>
             <Route path="/catalog/:categoryId" element={<CategoryProducts/>}/>
+
+            <Route path="/cart/" element={<Cart/>}/>
 
             {/* Работа с отзывами */}
             <Route path="/reviews" element={<ReviewsPage/>}/>

@@ -195,6 +195,7 @@ ol {
 
     &:focus {
       background-color: $pink900;
+
       svg g path {
         fill: $white;
       }
@@ -204,6 +205,31 @@ ol {
   svg {
     width: auto;
     height: 17px;
+  }
+}
+
+.add {
+  @include flex-center;
+  margin-top: 15px;
+  max-width: max-content;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+  padding: 8px 40px;
+  color: $maroon50;
+  background: $pink100;
+  border: 1px solid transparent;
+  border-radius: 40px;
+  transition-property: color, background, border, border-color, transform, opacity, box-shadow;
+  transition-duration: .4s;
+
+  &:hover {
+    background-color: $pink600;
+  }
+
+  &:focus {
+    background-color: transparent;
+    border-color: $maroon50;
   }
 }
 

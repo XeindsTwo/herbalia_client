@@ -127,6 +127,7 @@ export const ProductsCategory = () => {
                               src={product.images[0].url}
                               alt={product.name}
                               height={350}
+                              width={332}
                             />
                           )}
                         </div>

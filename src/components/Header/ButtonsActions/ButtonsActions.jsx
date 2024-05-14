@@ -1,23 +1,27 @@
+import {useSelector} from 'react-redux';
+import React, {useState, useEffect} from 'react';
 import styles from './ButtonsActions.module.scss';
 import SearchIcon from '../../../assets/images/icons/header/search.svg?react';
 import HeartIcon from '../../../assets/images/icons/header/heart.svg?react';
 import BasketIcon from '../../../assets/images/icons/header/basket.svg?react';
-import {Favorites} from "../../Favorites/Favorites.jsx";
 import {Link} from "react-router-dom";
-import React, {useState} from "react";
+import {Favorites} from "../../CartAndFavorites/Favorites.jsx";
 
 export const ButtonsActions = ({onSearchClick}) => {
   const {favoritesCount} = Favorites();
   const [isSearchActive, setIsSearchActive] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
+
+  const cartItems = useSelector(state => state.cart.cartItems);
+
+  useEffect(() => {
+    setCartItemCount(cartItems.length);
+  }, [cartItems]);
 
   const handleSearchClick = () => {
-    if (isSearchActive) {
-      setIsSearchActive(false);
-    } else {
-      if (onSearchClick) {
-        onSearchClick();
-      }
-      setIsSearchActive(true);
+    setIsSearchActive(!isSearchActive);
+    if (onSearchClick) {
+      onSearchClick();
     }
   };
 
@@ -41,10 +45,10 @@ export const ButtonsActions = ({onSearchClick}) => {
         </Link>
       </li>
       <li>
-        <a className={styles.link} href="">
+        <Link className={styles.link} to="/cart">
           <BasketIcon/>
-          <span className={styles.counter}>10</span>
-        </a>
+          <span className={`${styles.counter} ${cartItemCount > 0 ? styles.active : ''}`}>{cartItemCount}</span>
+        </Link>
       </li>
     </ul>
   )

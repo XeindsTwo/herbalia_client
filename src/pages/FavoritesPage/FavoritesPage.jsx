@@ -7,7 +7,8 @@ import {useQuery} from 'react-query';
 import axios from 'axios';
 import {Link} from "react-router-dom";
 import {formatPrice} from "../../utils/priceUtils.js";
-import {Favorites} from "../../components/Favorites/Favorites.jsx";
+import {Favorites} from "../../components/CartAndFavorites/Favorites.jsx";
+import {Cart} from "../../components/CartAndFavorites/Cart.jsx";
 
 const getFavorites = async () => {
   const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -17,7 +18,12 @@ const getFavorites = async () => {
 
 export const FavoritesPage = () => {
   const {favorites, handleToggleFavorite} = Favorites();
+  const {cartItems, handleAddToCart} = Cart();
   const {data, isLoading, isError} = useQuery('favorites', getFavorites);
+
+  const isInCart = (productId) => {
+    return cartItems.some(item => item.id === productId);
+  };
 
   return (
     <Layout>
@@ -64,6 +70,16 @@ export const FavoritesPage = () => {
                     <span className={styles.time}>с 10:00 до 23:00</span>
                   </p>
                   <span className={styles.price}>{formatPrice(product.price)}</span>
+                  {isInCart(product.id) ? (
+                    <Link className={'add active'} to="/cart">В корзине</Link>
+                  ) : (
+                    <button
+                      className={'add'}
+                      onClick={() => handleAddToCart(product.id, 1)}
+                    >
+                      Купить
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

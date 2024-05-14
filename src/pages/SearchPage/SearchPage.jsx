@@ -9,8 +9,9 @@ import styles from './SearchPage.module.scss';
 import Skeleton from 'react-loading-skeleton';
 import HeartIcon from '../../assets/images/icons/heart.svg?react';
 import 'react-loading-skeleton/dist/skeleton.css';
-import {Favorites} from "../../components/Favorites/Favorites.jsx";
+import {Favorites} from "../../components/CartAndFavorites/Favorites.jsx";
 import axios from 'axios';
+import {Cart} from "../../components/CartAndFavorites/Cart.jsx";
 
 const fetchProducts = async (query) => {
   const response = await axios.post('/catalog/search', {query}, {
@@ -25,6 +26,7 @@ const fetchProducts = async (query) => {
 export const SearchPage = () => {
   const location = useLocation();
   const {favorites, handleToggleFavorite} = Favorites();
+  const {cartItems, handleAddToCart} = Cart();
   const [sortMethod, setSortMethod] = useState('newest');
   const query = location.state?.query || '';
 
@@ -39,6 +41,10 @@ export const SearchPage = () => {
     if (sortMethod === 'expensive') return parseFloat(b.price) - parseFloat(a.price);
     return new Date(b.created_at) - new Date(a.created_at);
   });
+
+  const isInCart = (productId) => {
+    return cartItems.some(item => item.id === productId);
+  };
 
   return (
     <Layout>
@@ -99,6 +105,16 @@ export const SearchPage = () => {
                           <span className={styles.time}>с 10:00 до 23:00</span>
                         </p>
                         <span className={styles.price}>{formatPrice(product.price)}</span>
+                        {isInCart(product.id) ? (
+                          <Link className={'add active'} to="/cart">В корзине</Link>
+                        ) : (
+                          <button
+                            className={'add'}
+                            onClick={() => handleAddToCart(product.id, 1)}
+                          >
+                            Купить
+                          </button>
+                        )}
                       </li>
                     ))}
                   </ul>
