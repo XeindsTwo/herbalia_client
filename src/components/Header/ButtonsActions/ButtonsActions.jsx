@@ -4,14 +4,31 @@ import HeartIcon from '../../../assets/images/icons/header/heart.svg?react';
 import BasketIcon from '../../../assets/images/icons/header/basket.svg?react';
 import {Favorites} from "../../Favorites/Favorites.jsx";
 import {Link} from "react-router-dom";
+import React, {useState} from "react";
 
-export const ButtonsActions = () => {
+export const ButtonsActions = ({onSearchClick}) => {
   const {favoritesCount} = Favorites();
+  const [isSearchActive, setIsSearchActive] = useState(false);
+
+  const handleSearchClick = () => {
+    if (isSearchActive) {
+      setIsSearchActive(false);
+    } else {
+      if (onSearchClick) {
+        onSearchClick();
+      }
+      setIsSearchActive(true);
+    }
+  };
 
   return (
     <ul className={styles.list}>
       <li>
-        <button className={styles.link} type="button">
+        <button
+          className={`${styles.link} ${isSearchActive ? styles.active : ''}`}
+          type="button"
+          onClick={handleSearchClick}
+        >
           <SearchIcon/>
         </button>
       </li>

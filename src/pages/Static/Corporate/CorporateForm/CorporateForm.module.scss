@@ -1,0 +1,64 @@
+.section {
+  padding: 100px 0;
+  background-color: $white50;
+}
+
+.form {
+  max-width: 615px;
+  margin: 0 auto;
+  @include flex-center;
+  flex-direction: column;
+  padding: 60px 20px;
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px 0 rgba(53, 64, 71, .1);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.list {
+  @include flex-column(24);
+  max-width: 315px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.submit {
+  color: #4e1528;
+  background: #f0dbde;
+  display: flex;
+  justify-content: center;
+  max-width: 315px;
+  width: 100%;
+  padding: 13px 15px;
+  border-radius: 100px;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  transition: color .4s, background-color .4s;
+
+  &:hover {
+    background-color: #e7bfc4;
+  }
+}
+
+.link {
+  max-width: 50%;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.1;
+  font-weight: 500;
+  color: $gray900;
+
+  a {
+    color: $blue300;
+    transition: color .4s;
+
+    &:hover {
+      color: $maroon;
+    }
+  }
+}

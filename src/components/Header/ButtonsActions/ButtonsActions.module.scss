@@ -41,6 +41,10 @@
       background-color: rgba($white, .6);
       z-index: 1;
     }
+
+    path {
+      stroke: $white;
+    }
   }
 
   svg {

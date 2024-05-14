@@ -1,4 +1,6 @@
 .category {
+  position: relative;
+
   &:not(:last-child) {
     margin-bottom: 100px;
   }
@@ -61,5 +63,54 @@
   svg {
     height: auto;
     width: 20px;
+  }
+}
+
+.btn {
+  position: absolute;
+  z-index: 50;
+  right: -75px;
+  top: 50%;
+  transform: translateY(-80%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background-color: $white;
+  box-shadow: 0 0 10px rgba(74, 74, 74, .1);
+  transition: background-color .4s ease-in-out, border .4s ease-in-out, opacity .4s, box-shadow .4s ease-in-out;
+  @include r($sm) {
+    display: none;
+  }
+
+  &::before {
+    @include topLeft50;
+    @include pseudo;
+    @include bg;
+    width: 10px;
+    height: 20px;
+    background-image: url("/src/assets/images/icons/arrow-swiper.svg");
+  }
+
+  &:hover {
+    background-color: $pink100;
+  }
+
+  &:focus {
+    background-color: transparent;
+    border-color: $accent;
+  }
+
+  &_prev {
+    left: -75px;
+
+    &::before {
+      transform: scaleX(-1) translate(50%, -50%);
+    }
+  }
+
+  &[disabled] {
+    opacity: .5;
+    pointer-events: none;
   }
 }

@@ -1,29 +1,28 @@
-import { useState } from 'react';
-import { useQuery } from 'react-query';
+import {useState} from 'react';
+import {useQuery} from 'react-query';
 import axios from 'axios';
-import { Layout } from '../../components/Layout.jsx';
-import { useParams, Link } from 'react-router-dom';
-import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs.jsx';
-import { formatPrice } from '../../utils/priceUtils.js';
+import {Layout} from '../../components/Layout.jsx';
+import {Link} from 'react-router-dom';
+import {Breadcrumbs} from '../../components/Breadcrumbs/Breadcrumbs.jsx';
+import {formatPrice} from '../../utils/priceUtils.js';
 import vase from '../../assets/images/icons/vase.svg';
 import styles from './CategoryProducts.module.scss';
 import Skeleton from 'react-loading-skeleton';
 import HeartIcon from '../../assets/images/icons/heart.svg?react';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { Favorites } from "../../components/Favorites/Favorites.jsx";
-import { Contacts } from "../../components/Contacts/Contacts.jsx";
+import {Favorites} from "../../components/Favorites/Favorites.jsx";
+import {Contacts} from "../../components/Contacts/Contacts.jsx";
 
-const fetchProductsByCategory = async (categoryId) => {
-  const response = await axios.get(`/catalog/${categoryId}`);
+const fetchProducts = async () => {
+  const response = await axios.get(`/catalog`);
   return response.data;
 };
 
-export const CategoryProducts = () => {
-  const [sortMethod, setSortMethod] = useState('newest');
-  const { favorites, handleToggleFavorite } = Favorites();
-  const { categoryId } = useParams();
+export const Catalog = () => {
+  const {data, isLoading, isError} = useQuery('products', fetchProducts);
 
-  const { data, isLoading, isError } = useQuery(['categoryProducts', categoryId], () => fetchProductsByCategory(categoryId));
+  const [sortMethod, setSortMethod] = useState('newest');
+  const {favorites, handleToggleFavorite} = Favorites();
 
   const sortProducts = (method, products) => {
     if (!products) return [];
@@ -48,12 +47,11 @@ export const CategoryProducts = () => {
       <section className={'indent--breadcrumbs'}>
         <div className="container">
           <Breadcrumbs
-            current={data?.category_name}
-            additional={[{ label: 'Каталог', to: '/catalog' }]}
+            current={'Каталог'}
           />
           <div className={styles.top}>
-            <h1 className={styles.name}>{data?.category_name}</h1>
-            {!isLoading && !isError && data?.products.length > 0 && (
+            <h1 className={styles.name}>Каталог цветов</h1>
+            {!isLoading && !isError && data && data.products && data.products.length > 0 && (
               <div className={styles.counters}>
                 <span>от {formatPrice(data.min_price)}</span>
                 <span>{data.total_count} шт</span>
@@ -64,22 +62,22 @@ export const CategoryProducts = () => {
             <ul className={styles.list}>
               {[...Array(4)].map((_, index) => (
                 <li key={index}>
-                  <Skeleton height={300} />
-                  <Skeleton count={4} />
+                  <Skeleton height={300}/>
+                  <Skeleton count={4}/>
                 </li>
               ))}
             </ul>
           ) : (
             <>
               {isError && <div>Ошибка при загрузке товаров</div>}
-              {data?.products.length === 0 && !isError && (
+              {!isLoading && sortedProducts.length === 0 && !isError && (
                 <div className={styles.empty}>
-                  <img src={vase} alt="Ваза декор" width={70} height={88} />
-                  <span className={styles.empty_top}>В разделе пока пусто</span>
+                  <img src={vase} alt="Ваза декор" width={70} height={88}/>
+                  <span className={styles.empty_top}>В каталоге пока пусто</span>
                   <p>В скором времени здесь появятся товары :)</p>
                 </div>
               )}
-              {data?.products.length > 0 && (
+              {!isLoading && sortedProducts.length > 0 && (
                 <>
                   <select className={styles.select} value={sortMethod} onChange={(e) => setSortMethod(e.target.value)}>
                     <option value="cheapest">Сначала подешевле</option>
@@ -94,9 +92,9 @@ export const CategoryProducts = () => {
                           type="button"
                           onClick={() => handleToggleFavorite(product.id)}
                         >
-                          <HeartIcon />
+                          <HeartIcon/>
                         </button>
-                        <Link className={styles.link_img} to={`/catalog/${categoryId}/${product.id}`}>
+                        <Link className={styles.link_img} to={`/catalog/${product.category_id}/${product.id}`}>
                           <img
                             className={styles.img}
                             src={product.image_url}
@@ -106,7 +104,7 @@ export const CategoryProducts = () => {
                             loading={"lazy"}
                           />
                         </Link>
-                        <Link className={styles.name_product} to={`/catalog/${categoryId}/${product.id}`}>
+                        <Link className={styles.name_product} to={`/catalog/${product.id}`}>
                           {product.name}
                         </Link>
                         <p className={styles.delivery}>
@@ -123,7 +121,7 @@ export const CategoryProducts = () => {
           )}
         </div>
       </section>
-      <Contacts />
+      <Contacts/>
     </Layout>
   );
 };

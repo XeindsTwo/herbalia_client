@@ -11,7 +11,7 @@ export const Favorites = () => {
     dispatch(toggleFavorite(productId));
     const product = favorites.find(item => item === productId);
     if (product) {
-      toast.error('Товар удален из избранного');
+      toast.info('Товар удален из избранного');
     } else {
       toast.success('Товар добавлен в избранное');
     }

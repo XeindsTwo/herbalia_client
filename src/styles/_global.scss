@@ -159,9 +159,9 @@ ol {
 .like {
   @include flex-center;
   background-color: $white;
-  padding: 4px;
-  width: 35px;
-  height: 35px;
+  padding: 3px;
+  width: 32px;
+  height: 32px;
   border-radius: 7px;
   position: absolute;
   z-index: 50;
@@ -199,6 +199,11 @@ ol {
         fill: $white;
       }
     }
+  }
+
+  svg {
+    width: auto;
+    height: 17px;
   }
 }
 

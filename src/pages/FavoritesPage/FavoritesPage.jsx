@@ -79,4 +79,4 @@ export const FavoritesPage = () => {
       </section>
     </Layout>
   );
-}
+};

@@ -1,6 +1,10 @@
-import {Layout} from "../../components/Layout.jsx";
-import styles from './Static.module.scss';
-import {Breadcrumbs} from "../../components/Breadcrumbs/Breadcrumbs.jsx";
+import {Layout} from "../../../components/Layout.jsx";
+import styles from '../Static.module.scss';
+import {Breadcrumbs} from "../../../components/Breadcrumbs/Breadcrumbs.jsx";
+import {Benefits} from "./Benefits/Benefits.jsx";
+import {Guarantee} from "./Guarantee/Guarantee.jsx";
+import {TopReviews} from "../../Home/TopReviews/TopReviews.jsx";
+import {CorporateForm} from "./CorporateForm/CorporateForm.jsx";
 
 export const Corporate = () => {
   return (
@@ -56,6 +60,10 @@ export const Corporate = () => {
           </div>
         </div>
       </section>
+      <Benefits/>
+      <Guarantee/>
+      <TopReviews/>
+      <CorporateForm/>
     </Layout>
   )
 }

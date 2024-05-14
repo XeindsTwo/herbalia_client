@@ -12,7 +12,7 @@ import {FlowerCare} from "./pages/Static/FlowerCare/FlowerCare";
 import {Guarantee} from "./pages/Static/Guarantee";
 import {HowOrder} from "./pages/Static/HowOrder";
 import {Faq} from "./pages/Static/Faq";
-import {Corporate} from "./pages/Static/Corporate";
+import {Corporate} from "./pages/Static/Corporate/Corporate.jsx";
 import {Agreement} from "./pages/Static/Agreement";
 import {PolicyPersonalData} from "./pages/Static/PolicyPersonalData";
 import {Privacy} from "./pages/Static/Privacy";
@@ -41,6 +41,9 @@ import {CategoryProducts} from "./pages/Catalog/CategoryProducts.jsx";
 import {MainPage} from "./pages/Admin/Products/MainPage/MainPage.jsx";
 import {EditProduct} from "./pages/Admin/Products/EditProduct/EditProduct.jsx";
 import {FavoritesPage} from "./pages/FavoritesPage/FavoritesPage.jsx";
+import {Catalog} from "./pages/Catalog/Catalog.jsx";
+import {SearchPage} from "./pages/SearchPage/SearchPage.jsx";
+import {CorporateStatements} from "./pages/Admin/CorporateStatements/CorporateStatements.jsx";
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 axios.defaults.withCredentials = true;
@@ -80,7 +83,9 @@ const App = () => {
             <Route path="/quality-control" element={<QualityControl/>}/>
 
             {/*Работа с каталогом*/}
+            <Route path="/search/" element={<SearchPage/>}/>
             <Route path="/catalog/*" element={<Error404/>}/>
+            <Route path="/catalog/" element={<Catalog/>}/>
             <Route path="/catalog/:categoryId/:productId" element={<ProductDetails/>}/>
             <Route path="/catalog/:categoryId" element={<CategoryProducts/>}/>
 
@@ -103,6 +108,10 @@ const App = () => {
                 <Route path="create" element={<CreateProduct/>}/>
                 <Route path="category/:categoryId" element={<ProductsCategory/>}/>
                 <Route path=":id/edit" element={<EditProduct/>}/>
+                <Route path="*" element={<Error404/>}/>
+              </Route>
+              <Route path="corporate-statements/*">
+                <Route path="" element={<CorporateStatements/>}/>
                 <Route path="*" element={<Error404/>}/>
               </Route>
               <Route path="categories" element={<Categories/>}/>

@@ -1,0 +1,136 @@
+.form {
+  position: absolute;
+  max-width: 1220px;
+  width: 100%;
+  top: 180px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 500;
+  padding: 42px 24px 42px 60px;
+  border-radius: 8px;
+  background-color: $white;
+  min-height: 170px;
+  box-shadow: 0 6px 20px 0 rgba(53, 64, 71, .1);
+  transition: transform .5s, opacity .4s, visibility .4s;
+
+  &.active {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+.close {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  z-index: 2;
+  transition: outline .4s;
+  outline: 1px solid transparent;
+  border-radius: 10px;
+
+  &:hover {
+    color: $accent;
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(135deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+
+  &:focus {
+    outline-color: $maroon;
+  }
+
+  &::before,
+  &::after {
+    display: block;
+    content: "";
+    width: 45%;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: currentColor;
+    border-radius: 4px;
+    transition: transform .4s;
+    will-change: transform;
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
+
+.content {
+  @include flex-column(20);
+}
+
+.search {
+  @include flex-between(20);
+  align-items: center;
+}
+
+.subtext {
+  font-size: 14px;
+  font-weight: 600;
+  color: $gray500;
+}
+
+.input {
+  font-weight: 700;
+  padding: 6px 15px 6px 0;
+  font-size: 32px;
+  width: 100%;
+
+  &::placeholder {
+    transform: translateX(10px);
+    color: $gray700;
+  }
+
+  &:-webkit-autofill, &:-webkit-autofill:focus {
+    -webkit-text-fill-color: $black300;
+    -webkit-box-shadow: inset 0 0 0 50px transparent;
+  }
+
+  &::selection {
+    -webkit-text-fill-color: $white;
+  }
+
+  &:-webkit-autofill:hover {
+    -webkit-text-fill-color: $black300;
+  }
+}
+
+.btn {
+  background-color: $pink600;
+  min-width: 126px;
+  display: flex;
+  line-height: 1;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 50px;
+  padding: 14px;
+  justify-content: center;
+  outline: 1px solid transparent;
+  transition: background-color .4s, opacity .4s, outline-color .4s, color .4s;
+
+  &:hover {
+    background-color: $pink300;
+  }
+
+  &:focus, &:active {
+    background-color: $maroon50;
+    color: $white;
+  }
+}

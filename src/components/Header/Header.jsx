@@ -7,9 +7,11 @@ import {Link} from "react-router-dom";
 import {AuthContent} from "../../utils/AuthContent.jsx";
 import {CategoryNavigation} from "./CategoryNavigation/CategoryNavigation.jsx";
 import headerDecor from '../../assets/images/header.svg';
+import {SearchForm} from "../SearchForm/SearchForm.jsx";
 
 export const Header = () => {
   const [isHelpMenuOpen, setIsHelpMenuOpen] = useState(false);
+  const [isSearchFormOpen, setIsSearchFormOpen] = useState(false); // New state for search form
   const helpBtnRef = useRef(null);
   const navRef = useRef(null);
 
@@ -42,6 +44,10 @@ export const Header = () => {
   }, [isHelpMenuOpen]);
 
   const toggleHelpMenu = () => setIsHelpMenuOpen(!isHelpMenuOpen);
+
+  const handleSearchButtonClick = () => {
+    setIsSearchFormOpen(!isSearchFormOpen);
+  };
 
   return (
     <header className={styles.header}>
@@ -79,13 +85,14 @@ export const Header = () => {
                 />
                 <HelpMenu isHelpMenuOpen={isHelpMenuOpen} ref={navRef}/>
               </div>
-              <ButtonsActions/>
+              <ButtonsActions onSearchClick={handleSearchButtonClick}/>
             </div>
           </div>
           <CategoryNavigation/>
         </div>
       </div>
       <img className={styles.decor} src={headerDecor} width={1005} height={195}/>
+      <SearchForm isActive={isSearchFormOpen} setIsActive={setIsSearchFormOpen}/>
     </header>
   )
 };

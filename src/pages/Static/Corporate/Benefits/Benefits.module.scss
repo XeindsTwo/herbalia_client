@@ -1,0 +1,30 @@
+.list {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 70px;
+
+  li {
+    @include flex-column(0);
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.img {
+  @include objectCoverBg;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  display: block;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 16px;
+  max-width: 310px;
+}
