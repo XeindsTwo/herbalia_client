@@ -5,6 +5,7 @@ import {formatPrice} from "../../utils/priceUtils.js";
 import {Link, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import styles from './Cart.module.scss';
+import vase from "../../assets/images/icons/vase.svg";
 
 export const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -94,12 +95,16 @@ export const Cart = () => {
     <Layout>
       <section className={`${styles.section} indent--breadcrumbs`}>
         <div className="container">
-          {isLoading && <div>Loading...</div>}
+          {isLoading && <div>Загрузка данных...</div>}
           {error && <div>{error.message || 'Произошла ошибка при загрузке корзины'}</div>}
           {!isLoading && !error && (
             <>
               {cartItems.length === 0 ? (
-                <div>Корзина пуста</div>
+                <div className={styles.empty}>
+                  <img src={vase} alt="Ваза декор" width={70} height={88}/>
+                  <span className={styles.empty_top}>В корзине пока пусто</span>
+                  <p>Мы будем рады выполнить ваш заказ</p>
+                </div>
               ) : (
                 <>
                   <h1 className={`${styles.title} title`}>Корзина товаров</h1>
@@ -175,7 +180,7 @@ export const Cart = () => {
                       <p className={styles.total}>
                         Итого <span>{formatPrice(calculateTotalPrice(cartItems))}</span>
                       </p>
-                      <a className={styles.order} href="">Оформить заказ</a>
+                      <Link className={styles.order} to="/order">Оформить заказ</Link>
                     </div>
                   </div>
                 </>

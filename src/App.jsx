@@ -45,6 +45,8 @@ import {Catalog} from "./pages/Catalog/Catalog.jsx";
 import {SearchPage} from "./pages/SearchPage/SearchPage.jsx";
 import {CorporateStatements} from "./pages/Admin/CorporateStatements/CorporateStatements.jsx";
 import {Cart} from "./pages/Cart/Cart.jsx";
+import {Order} from "./pages/Order/Order.jsx";
+import {Orders} from "./pages/Admin/Orders/Orders.jsx";
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 axios.defaults.withCredentials = true;
@@ -91,6 +93,7 @@ const App = () => {
             <Route path="/catalog/:categoryId" element={<CategoryProducts/>}/>
 
             <Route path="/cart/" element={<Cart/>}/>
+            <Route path="/order" element={<Order/>}/>
 
             {/* Работа с отзывами */}
             <Route path="/reviews" element={<ReviewsPage/>}/>
@@ -118,6 +121,7 @@ const App = () => {
                 <Route path="*" element={<Error404/>}/>
               </Route>
               <Route path="categories" element={<Categories/>}/>
+              <Route path="orders" element={<Orders/>}/>
               <Route path="reviews/*">
                 <Route path="unapproved" element={<UnapprovedReviews/>}/>
                 <Route path="approved" element={<ApprovedReviews/>}/>

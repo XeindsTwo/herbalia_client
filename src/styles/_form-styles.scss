@@ -16,7 +16,7 @@
   width: 100%;
   border-radius: 8px;
   border: 1px solid #b8c1c0;
-  transition: border .4s;
+  transition: border .4s, opacity .4s;
 
   &--all-in {
     max-width: 100%;
@@ -55,6 +55,10 @@
 
   &:-webkit-autofill:hover {
     -webkit-text-fill-color: $black300;
+  }
+
+  &:disabled {
+    opacity: .5;
   }
 }
 

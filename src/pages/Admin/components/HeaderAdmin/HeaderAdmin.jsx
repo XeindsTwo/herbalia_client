@@ -7,7 +7,8 @@ const links = [
   {to: "/admin/categories", text: "Управление категориями"},
   {to: "/admin/reviews/unapproved", text: "Управление отзывами"},
   {to: "/admin/improvements", text: "Улучшения проекта"},
-  {to: "/admin/corporate-statements", text: "Управление заявлениями партнеров"}
+  {to: "/admin/corporate-statements", text: "Управление заявлениями партнеров"},
+  {to: "/admin/orders", text: "Управление заказами"}
 ];
 
 export const HeaderAdmin = () => {

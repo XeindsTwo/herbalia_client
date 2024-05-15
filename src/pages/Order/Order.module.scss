@@ -12,6 +12,7 @@
 
   &_top {
     font-size: 24px;
+    text-align: center;
     font-weight: 700;
     line-height: 1.3;
     margin-top: 24px;
@@ -31,10 +32,11 @@
 
 .list {
   padding: 32px 40px;
-  max-width: 100%;
+  max-width: 960px;
   width: 100%;
   background: $white;
   border-radius: 8px;
+  margin-bottom: 40px;
   box-shadow: 0 6px 20px 0 rgba(53, 64, 71, .1);
 }
 
@@ -104,15 +106,14 @@
   border-radius: 8px;
 }
 
-.right {
-  position: sticky;
-  top: 24px;
-  max-width: 400px;
+.itog {
+  max-width: 960px;
   align-self: flex-start;
   width: 100%;
   padding: 32px;
   background: $white;
   border-radius: 8px;
+  margin-bottom: 50px;
   box-shadow: 0 6px 20px 0 rgba(53, 64, 71, .1);
 }
 
@@ -140,11 +141,12 @@
 
 .order {
   @include flex-center;
+  max-width: max-content;
   margin-top: 32px;
   width: 100%;
   font-size: 20px;
   border-radius: 40px;
-  padding: 17px;
+  padding: 17px 40px !important;
   color: $white;
   background: $maroon50;
   border: 1px solid transparent;
@@ -193,4 +195,99 @@
   svg {
     fill: $maroon50;
   }
+}
+
+.form {
+  @include flex-align-center(40);
+  align-items: flex-start;
+}
+
+.left {
+  max-width: 420px;
+  width: 100%;
+}
+
+.list {
+  @include flex-column(20);
+}
+
+.right {
+  @include flex-column(30);
+}
+
+.confirm {
+  color: $gray600;
+  font-size: 12px;
+  max-width: 340px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+
+  a {
+    color: $accent;
+    transition: color .4s, outline .4s;
+    border-radius: 4px;
+
+    &:hover {
+      color: $maroon;
+    }
+
+    &:focus {
+      outline: 1px solid $maroon;
+    }
+  }
+}
+
+.order {
+  @include flex-center;
+  margin-top: 32px;
+  width: 100%;
+  font-size: 20px;
+  border-radius: 40px;
+  padding: 17px;
+  color: $white;
+  background: $maroon50;
+  border: 1px solid transparent;
+  transition: background-color .4s, border .4s, color .4s;
+
+  &:hover {
+    background-color: $maroon100;
+  }
+
+  &:focus {
+    background-color: transparent;
+    border-color: $maroon50;
+    color: $maroon50;
+  }
+}
+
+.order_item {
+  @include flex-column(12);
+  margin-bottom: 40px;
+  font-size: 16px;
+
+  input[type="radio"] {
+    margin: 0;
+    appearance: auto;
+    outline: initial;
+    cursor: pointer;
+  }
+
+  li {
+    @include flex-align-center(7);
+    max-width: max-content;
+
+    label {
+      cursor: pointer;
+    }
+  }
+}
+
+.radio {
+  appearance: auto;
+  margin: 0 8px 0 0;
+}
+
+.li {
+  margin: 0;
+  list-style: none;
 }

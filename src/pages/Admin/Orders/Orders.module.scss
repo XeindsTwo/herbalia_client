@@ -1,0 +1,140 @@
+.list {
+  margin-top: 30px;
+  @include flex-column(80);
+}
+
+.order {
+  @include flex-column(10);
+
+  &_info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: flex-end;
+    grid-gap: 30px 50px;
+    margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 1.4;
+
+    li {
+      padding-bottom: 12px;
+      border-bottom: 1px solid $maroon;
+    }
+  }
+
+  &_id {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  &_products {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.delete {
+  font-size: 16px;
+  color: $red500;
+  max-width: max-content;
+  margin-bottom: 10px;
+  padding-bottom: 3px;
+  position: relative;
+
+  &::before {
+    @include pseudo;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: $red500;
+    transition: width .4s;
+  }
+
+  &:hover {
+    &::before {
+      width: 100%;
+    }
+  }
+}
+
+.item {
+  position: relative;
+}
+
+.link_img {
+  position: relative;
+  display: flex;
+  border-radius: 7px;
+  overflow: hidden;
+  transition: border .4s, border .4s;
+  border: 2px solid transparent;
+  margin-bottom: 10px;
+
+  &::before {
+    @include pseudo;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(#000, .2);
+    transition: opacity .4s;
+  }
+
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:focus {
+    border-color: $accent;
+  }
+}
+
+.img {
+  @include objectCoverBg;
+  border-radius: 7px;
+  transition: transform .3s, border .4s;
+}
+
+.name_product {
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: flex;
+  max-width: max-content;
+  transition: color .4s, outline-color .4s;
+  border-radius: 4px;
+  outline: 2px solid transparent;
+
+  &:hover {
+    color: $accent;
+  }
+
+  &:focus {
+    outline-color: $pink300;
+    color: inherit;
+  }
+}
+
+.delivery {
+  @include flex-column(5);
+  font-size: 14px;
+  color: $gray500;
+}
+
+.time {
+  font-size: 12px;
+}
+
+.price {
+  display: flex;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.empty {
+  margin-top: 20px;
+}
