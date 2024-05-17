@@ -48,7 +48,7 @@ import {Cart} from "./pages/Cart/Cart.jsx";
 import {Order} from "./pages/Order/Order.jsx";
 import {Orders} from "./pages/Admin/Orders/Orders.jsx";
 
-axios.defaults.baseURL = 'http://yourihg7.beget.tech/api/';
+axios.defaults.baseURL = 'https://diplomkiis4.store/api/';
 axios.defaults.withCredentials = true;
 const queryClient = new QueryClient();
 
