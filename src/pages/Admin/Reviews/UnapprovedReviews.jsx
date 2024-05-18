@@ -24,7 +24,7 @@ export const UnapprovedReviews = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    const response = await axios.get('/admin/reviews/', config);
+    const response = await axios.get('/admin/reviews', config);
     return response.data;
   });
 

@@ -25,7 +25,7 @@ export const CreateProduct = () => {
     async function fetchCategories() {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('/admin/categories/', {
+        const response = await axios.get('/admin/categories', {
           headers: {
             Authorization: `Bearer ${token}`
           }
