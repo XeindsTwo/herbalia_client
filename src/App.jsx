@@ -48,7 +48,7 @@ import {Cart} from "./pages/Cart/Cart.jsx";
 import {Order} from "./pages/Order/Order.jsx";
 import {Orders} from "./pages/Admin/Orders/Orders.jsx";
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
+axios.defaults.baseURL = 'https://diplomkiis4.store/api/';
 axios.defaults.withCredentials = true;
 const queryClient = new QueryClient();
 
